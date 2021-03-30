@@ -1,0 +1,48 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+    "extends": [
+        "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+        "sourceType": "module" // Allows for the use of imports
+    },
+    "plugins": ["@typescript-eslint"],
+    "rules": {
+        "indent": [0, "space"],
+        "no-console": [0],
+
+        "import/namespace": 0, // doesn't work with types
+        "import/order": 2,
+        "import/no-default-export": 2,
+
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/indent": [0, "tab"],
+        "@typescript-eslint/ban-ts-ignore": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/camelcase": 0,
+        "@typescript-eslint/prefer-interface": 0,
+        "@typescript-eslint/no-use-before-define": [
+            2,
+            {
+                "functions": false,
+                "classes": false,
+                "variables": true,
+                "typedefs": false
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+
+        "no-unused-vars": 0,
+        "@typescript-eslint/no-unused-vars": [2, { "argsIgnorePattern": "^_" }]
+    },
+    "settings": {
+        "import/ignore": ["node_modules"]
+    }
+}
