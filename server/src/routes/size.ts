@@ -3,10 +3,16 @@ import SizeOptions from "../entity/SizeOptions";
 
 export const sizeRouter = Router();
 
+// GET ===========================
 sizeRouter.get("/", async (req, res) => {
-    console.log(req.db);
-    console.log(SizeOptions);
-    const productRepository = req.db.getRepository(SizeOptions);
-    const productList = await productRepository.find({});
-    res.json(productList);
+    try {
+        console.log(req.db);
+        console.log(SizeOptions);
+        const productRepository = req.db.getRepository(SizeOptions);
+        const productList = await productRepository.find({});
+        return res.json(productList);
+    } catch (error) {
+        console.log(error);
+        return res.send("Get error");
+    }
 });
