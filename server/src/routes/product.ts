@@ -1,18 +1,24 @@
 import { Router } from "express";
 import Product from "../entity/Product";
+import SizeOptions from "../entity/SizeOptions";
+import { IReqDataProduct } from "../types";
+import { exportFile } from "../utils/S3";
+import multer from "multer";
 
 export const productRouter = Router();
 
+// GET ===========================
 productRouter.get("/", async (req, res) => {
     try {
         console.log(Product);
         const productRepository = req.db.getRepository(Product);
         const productList = await productRepository.find({
-            relations: ["category"],
+            relations: ["category", "product_size"],
         });
-        res.json(productList);
-    } catch {
-        res.send("Get error");
+        return res.json(productList);
+    } catch (error) {
+        console.log(error);
+        return res.send("Get error");
     }
 });
 
@@ -22,40 +28,80 @@ productRouter.get("/:id", async (req, res) => {
         const productList = await productRepository.findOne({
             id: req.params.id,
         });
-        res.json(productList);
+        return res.json(productList);
     } catch (error) {
-        res.json({ ok: false, error });
+        console.log(error);
+        return res.send("Get one error");
     }
 });
 
-productRouter.post("/", async (req, res) => {
+const upload = multer();
+
+// POST ==========================
+productRouter.post("/", upload.single("image"), async (req, res) => {
     try {
-        console.log(req.body);
+        console.log(req.file);
+        const body: IReqDataProduct = req.body;
         const productRepository = req.db.getRepository(Product);
-        const product = productRepository.create(req.body);
+        const sizeRepository = req.db.getRepository(SizeOptions);
+        await exportFile(req.file);
+        const productsSizes = await sizeRepository.find({
+            where: body.product_size.map((size) => {
+                return { id: size };
+            }),
+        });
+        const product = productRepository.create({
+            ...body,
+            product_size: productsSizes,
+        });
         await productRepository.save(product);
-        res.send("Post done");
-    } catch {
-        res.send("Post error");
+        return res.send("Post done");
+    } catch (error) {
+        console.log(error);
+        return res.send("Post error");
     }
 });
 
 productRouter.post("/:id", async (req, res) => {
     try {
+        const body: IReqDataProduct = req.body;
         const productRepository = req.db.getRepository(Product);
+        const sizeRepository = req.db.getRepository(SizeOptions);
+        const product = await productRepository.findOne(
+            { id: req.params.id },
+            { relations: ["category", "product_size"] }
+        );
+        if (!product) {
+            throw new Error(`Product not found ${req.params.id}`);
+        }
+        const productsSizes = await sizeRepository.find({
+            where: body.product_size.map((size) => {
+                return { id: size };
+            }),
+        });
+        console.log(product.product_size);
+        await productRepository
+            .createQueryBuilder()
+            .relation(Product, "product_size")
+            .of(product)
+            .addAndRemove(productsSizes, product.product_size);
+        delete req.body.product_size;
         await productRepository.update({ id: req.params.id }, req.body);
-        res.send("Post update is done");
-    } catch {
-        res.send("Post update error");
+
+        return res.send("Post update is done");
+    } catch (error) {
+        console.log(error);
+        return res.send("Post update error");
     }
 });
-
+// DELETE ========================
 productRouter.delete("/:id", async (req, res) => {
     try {
         const productRepository = req.db.getRepository(Product);
         await productRepository.delete({ id: req.params.id });
-        res.send("Delete is done");
-    } catch {
-        res.send("Delete error");
+        return res.send("Delete is done");
+    } catch (error) {
+        console.log(error);
+        return res.send("Delete error");
     }
 });

@@ -9,7 +9,7 @@ export default class User {
     fname: string;
     @Column({ type: "varchar", nullable: false })
     lname: string;
-    @Column({ type: "varchar", nullable: false })
+    @Column({ type: "varchar", nullable: false, unique: true })
     email: string;
     @Column({ type: "varchar", nullable: true })
     phone_number1: string;

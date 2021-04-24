@@ -8,13 +8,22 @@ import SizeOptions from "./entity/SizeOptions";
 import { sizeRouter } from "./routes/size";
 import User from "./entity/User";
 import { userRouter } from "./routes/user";
+import Order from "./entity/Order";
+import { orderRouter } from "./routes/order";
+import { config } from "dotenv";
+import { authMiddleware } from "./auth/middleware";
+import cookieParser from "cookie-parser";
 
+config();
 const port = process.env.PORT || 3000;
 
 openConnection().then(async (connection) => {
     // const hello = await connection.getRepository("Product").find();
     const app = express();
+    app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+    app.use(authMiddleware);
     app.use((req, _res, next) => {
         req.db = connection;
         return next();
@@ -23,6 +32,7 @@ openConnection().then(async (connection) => {
     app.use("/category", categoryRouter);
     app.use("/size", sizeRouter);
     app.use("/user", userRouter);
+    app.use("/order", orderRouter);
 
     app.listen(port, () => {
         console.log("hello");
@@ -38,6 +48,6 @@ function openConnection() {
         password: "k88nj88oNeR",
         database: "ZimaLetto",
         synchronize: true,
-        entities: [Product, Category, SizeOptions, User],
+        entities: [Product, Category, SizeOptions, User, Order],
     });
 }
