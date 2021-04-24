@@ -4,6 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "npm run build && node dist/index.js",
+        "build": "tsc",
         "watch": "tsc -w",
         "dev": "nodemon dist/index.js"
     },
