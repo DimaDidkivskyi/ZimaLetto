@@ -27,5 +27,6 @@ export interface IReqDataOrder {
     client_fname: string;
     client_lname: string;
     client_phone: string;
-    products: string;
+    products: { id: string; quantity: number }[];
+    products_json: string;
 }
