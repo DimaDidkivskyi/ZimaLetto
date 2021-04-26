@@ -13,6 +13,7 @@ import { orderRouter } from "./routes/order";
 import { config } from "dotenv";
 import { authMiddleware } from "./auth/middleware";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 config();
 const port = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ const port = process.env.PORT || 3000;
 openConnection().then(async (connection) => {
     // const hello = await connection.getRepository("Product").find();
     const app = express();
+    app.use(cors({ origin: [process.env.APP_URL || ""] }));
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
