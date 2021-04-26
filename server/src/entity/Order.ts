@@ -1,5 +1,12 @@
 import "reflect-metadata";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    PrimaryGeneratedColumn,
+} from "typeorm";
+import Product from "./Product";
 
 @Entity("Order")
 export default class Order {
@@ -14,6 +21,9 @@ export default class Order {
     @Column({ type: "varchar", nullable: false })
     client_phone: string;
     // address
+    @ManyToMany(() => Product)
+    @JoinTable()
+    products: Product[];
     @Column({ type: "json", nullable: false })
-    products: string;
+    products_json: string;
 }
