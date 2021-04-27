@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router";
 import { Route } from "react-router-dom";
 
 import { Header } from "./components/Header/Header";
@@ -14,6 +15,11 @@ import { ConfidentialityPolicy } from "./pages/ConfidentialityPolicy";
 import { Product } from "./pages/Product";
 
 function App() {
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [location]);
+
     return (
         <div className="wrapper">
             <Header />
