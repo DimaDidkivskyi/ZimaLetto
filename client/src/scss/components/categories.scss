@@ -1,0 +1,33 @@
+@import "./variables.scss";
+
+.categories {
+    padding: 20px 0;
+
+    &__content {
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            li {
+                list-style-type: none;
+
+                a {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 23px;
+                    line-height: 28px;
+                    color: #4f4f4f;
+                    text-decoration: none;
+
+                    &.active {
+                        background: $green;
+                        border-radius: 25px;
+                        padding: 10px 25px 10px 25px;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}

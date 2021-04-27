@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: -webkit-focus-ring-color auto 0px !important;
+}
+
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: #000;
+    height: 100%;
+}
+
+.content {
+    min-height: calc(100vh - 401px);
+}
+
+.container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.d-flex {
+    display: flex;
+}
+
+/* Imports */
+
+/* Client side */
+@import "./components/variables.scss";
+@import "./components/header.scss";
+@import "./components/slider.scss";
+@import "./components/categories.scss";
+@import "./components/products.scss";
+@import "./components/footer.scss";
+@import "./components/delivery.scss";
+@import "./components/payment.scss";
+@import "./components/contacts.scss";
+@import "./components/cart.scss";
+@import "./components/terms-conditions.scss";
+@import "./components/confidentiality-policy.scss";
+@import "./components/product-info.scss";
+@import "./components/product-about.scss";
+@import "./components/login.scss";
+
+/* Admin panel */

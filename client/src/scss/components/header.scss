@@ -1,0 +1,84 @@
+@import "./variables.scss";
+
+.header {
+    height: 100px;
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding-top: 20px;
+
+        ul {
+            display: flex;
+
+            li {
+                list-style-type: none;
+
+                span {
+                    margin: 0 10px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #333;
+                    padding: 0 22px;
+                    transition: $duration linear;
+
+                    &:hover {
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+
+    &__logo {
+        cursor: pointer;
+
+        img {
+            margin-right: 20px;
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    &__phone {
+        display: flex;
+        margin-right: 50px;
+
+        img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        span {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 21px;
+            color: #000;
+            text-decoration: none;
+        }
+    }
+
+    &__user {
+        margin-right: 30px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+    }
+
+    &__cart {
+        cursor: pointer;
+    }
+}

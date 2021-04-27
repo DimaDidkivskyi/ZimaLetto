@@ -1,0 +1,63 @@
+@import "./variables.scss";
+
+.slider {
+    margin: 60px 0 25px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__block {
+        width: 100%;
+        max-width: 1070px;
+        height: 250px;
+        display: flex;
+        justify-content: space-between;
+        background: linear-gradient(180deg, #f1f1fb 0%, #ebebf5 100%);
+        box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.03);
+        border-radius: 18px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__img {
+        width: 1100px;
+        height: 350px;
+        border-radius: 10px;
+    }
+
+    &__right-arrow {
+        position: absolute;
+        top: 50%;
+        right: 12%;
+        font-size: 3rem;
+        color: $black;
+        z-index: 1;
+        cursor: pointer;
+        user-select: none;
+        fill: $green;
+    }
+
+    &__left-arrow {
+        position: absolute;
+        top: 50%;
+        left: 12%;
+        font-size: 3rem;
+        color: $black;
+        z-index: 1;
+        cursor: pointer;
+        user-select: none;
+        fill: $green;
+    }
+
+    .slide {
+        opacity: 0;
+        transition-duration: 1s ease;
+    }
+
+    .slide.active {
+        opacity: 1;
+        transition-duration: 1s;
+        transform: scale(1.08);
+    }
+}
