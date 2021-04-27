@@ -49,7 +49,7 @@ export const Form = ({ showModal, setShowModal }) => {
     return (
         <>
             {showModal ? (
-                <animated.div style={animation}>
+                <animated.div style={{ ...animation, zIndex: 10 }}>
                     <section
                         ref={modalRef}
                         onClick={closeModalByBackground}
