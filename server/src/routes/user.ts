@@ -7,13 +7,17 @@ import { decode, verify } from "jsonwebtoken";
 
 export const userRouter = Router();
 
+const userPerPage = 20;
+
 // GET ========================
 userRouter.get("/", async (req, res) => {
     try {
-        console.log(req.db);
-        console.log(User);
+        const page = parseInt(req.query.page as string) || 0;
         const productRepository = req.db.getRepository(User);
-        const productList = await productRepository.find({});
+        const productList = await productRepository.findAndCount({
+            skip: userPerPage * (page - 1),
+            take: userPerPage,
+        });
         return res.json(productList);
     } catch (error) {
         console.log(error);

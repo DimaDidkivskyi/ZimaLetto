@@ -5,11 +5,17 @@ import { IReqDataOrder } from "../types";
 export const orderRouter = Router();
 export const productRouter = Router();
 
+const orderPerPage = 20;
+
 // GET ====================
 orderRouter.get("/", async (req, res) => {
     try {
+        const page = parseInt(req.query.page as string) || 0;
         const orderRepository = req.db.getRepository(Order);
-        const orderList = await orderRepository.find({});
+        const orderList = await orderRepository.findAndCount({
+            skip: orderPerPage * (page - 1),
+            take: orderPerPage,
+        });
         return res.send(orderList);
     } catch (error) {
         console.log(error);
