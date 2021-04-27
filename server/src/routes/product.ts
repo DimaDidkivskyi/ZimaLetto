@@ -7,13 +7,18 @@ import multer from "multer";
 
 export const productRouter = Router();
 
+const productPerPage = 9;
+
 // GET ===========================
 productRouter.get("/", async (req, res) => {
     try {
-        console.log(Product);
+        const page = parseInt(req.query.page as string) || 1;
         const productRepository = req.db.getRepository(Product);
-        const productList = await productRepository.find({
+        // const numOfProduct = await productRepository.findAndCount()
+        const productList = await productRepository.findAndCount({
             relations: ["category", "product_size"],
+            skip: productPerPage * (page - 1),
+            take: productPerPage,
         });
         return res.json(productList);
     } catch (error) {
