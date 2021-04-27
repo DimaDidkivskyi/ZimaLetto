@@ -26,11 +26,11 @@ openConnection().then(async (connection) => {
         req.db = connection;
         return next();
     });
-    app.use("/product", productRouter);
-    app.use("/category", categoryRouter);
-    app.use("/size", sizeRouter);
-    app.use("/user", userRouter);
-    app.use("/order", orderRouter);
+    app.use("/api/product", productRouter);
+    app.use("/api/category", categoryRouter);
+    app.use("/api/size", sizeRouter);
+    app.use("/api/user", userRouter);
+    app.use("/api/order", orderRouter);
 
     app.listen(port, () => {
         console.log("hello");
