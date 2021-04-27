@@ -6,20 +6,12 @@ import User from "../src/entity/User";
 import Order from "../src/entity/Order";
 import { config } from "dotenv";
 import { readFile } from "fs/promises";
+import { typeorm_conf } from "../src/utils/typeorm-conf";
 
 config();
 
 function openConnection() {
-    return createConnection({
-        type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "postgres",
-        password: "k88nj88oNeR",
-        database: "test",
-        synchronize: true,
-        entities: [Product, Category, SizeOptions, User, Order],
-    });
+    return createConnection(typeorm_conf);
 }
 
 const importDb = async () => {

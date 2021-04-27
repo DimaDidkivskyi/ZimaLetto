@@ -1,19 +1,15 @@
 import express from "express";
 import { createConnection } from "typeorm";
-import Product from "./entity/Product";
 import { productRouter } from "./routes/product";
-import Category from "./entity/Category";
 import { categoryRouter } from "./routes/category";
-import SizeOptions from "./entity/SizeOptions";
 import { sizeRouter } from "./routes/size";
-import User from "./entity/User";
 import { userRouter } from "./routes/user";
-import Order from "./entity/Order";
 import { orderRouter } from "./routes/order";
 import { config } from "dotenv";
 import { authMiddleware } from "./auth/middleware";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { typeorm_conf } from "./utils/typeorm-conf";
 
 config();
 const port = process.env.PORT || 3000;
@@ -42,14 +38,5 @@ openConnection().then(async (connection) => {
 });
 
 function openConnection() {
-    return createConnection({
-        type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "postgres",
-        password: "k88nj88oNeR",
-        database: "ZimaLetto",
-        synchronize: true,
-        entities: [Product, Category, SizeOptions, User, Order],
-    });
+    return createConnection(typeorm_conf);
 }
