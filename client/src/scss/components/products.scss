@@ -10,7 +10,9 @@
     }
 
     &__item {
+        position: relative;
         width: 320px;
+        height: 610px;
         margin-bottom: 56px;
     }
 
@@ -80,6 +82,9 @@
 
     &__to-cart {
         span {
+            position: absolute;
+            left: 0;
+            bottom: 0;
             margin-top: 13px;
             width: 140px;
             height: 38px;
