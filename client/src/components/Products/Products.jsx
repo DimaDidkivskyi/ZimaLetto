@@ -17,7 +17,7 @@ export const Products = () => {
                             <img src={product.image} alt="product" />
                         </div>
                         <div className="products__title">
-                            <a href="">{product.name}</a>
+                            <a href="/">{product.name}</a>
                         </div>
                     </Link>
                     <p className="products__description">

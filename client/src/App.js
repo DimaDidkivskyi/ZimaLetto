@@ -6,7 +6,8 @@ import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 
 import { Home } from "./pages/Home";
-import { Delivery } from "./pages/Delivery";
+import { Shipping } from "./pages/Shipping";
+import { ShippingMethods } from "./pages/ShippingMethods";
 import { Payment } from "./pages/Payment";
 import { Contacts } from "./pages/Contacts";
 import { Cart } from "./pages/Cart";
@@ -25,7 +26,12 @@ function App() {
             <Header />
             <div className="content">
                 <Route path="/" component={Home} exact />
-                <Route path="/delivery" component={Delivery} exact />
+                <Route path="/delivery" component={Shipping} exact />
+                <Route
+                    path="/shipping-methods"
+                    component={ShippingMethods}
+                    exact
+                />
                 <Route path="/payment" component={Payment} exact />
                 <Route path="/contacts" component={Contacts} exact />
                 <Route path="/cart" component={Cart} exact />
