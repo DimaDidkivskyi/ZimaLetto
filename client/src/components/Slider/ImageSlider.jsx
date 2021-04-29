@@ -29,22 +29,26 @@ const ImageSlider = ({ slides }) => {
                 className="slider__right-arrow"
                 onClick={nextSlide}
             />
-            {SliderData.map((slide, index) => {
-                return (
-                    <div
-                        className={index === current ? "slide active" : "slide"}
-                        key={index}
-                    >
-                        {index === current && (
-                            <img
-                                src={slide.image}
-                                alt="slider img"
-                                className="slider__img"
-                            />
-                        )}
-                    </div>
-                );
-            })}
+            <div className="container">
+                {SliderData.map((slide, index) => {
+                    return (
+                        <div
+                            className={
+                                index === current ? "slide active" : "slide"
+                            }
+                            key={index}
+                        >
+                            {index === current && (
+                                <img
+                                    src={slide.image}
+                                    alt="slider img"
+                                    className="slider__img"
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
         </section>
     );
 };
