@@ -1,6 +1,6 @@
 @import "./variables.scss";
 
-.delivery {
+.shipping {
     padding: 45px 0 60px;
 
     &__title {
@@ -35,6 +35,18 @@
             &:hover {
                 color: red;
             }
+        }
+
+        ul {
+            // margin: 10px 0;
+
+            li {
+                margin-left: 40px;
+            }
+        }
+
+        .shipping__content {
+            margin: 10px 0;
         }
     }
 
