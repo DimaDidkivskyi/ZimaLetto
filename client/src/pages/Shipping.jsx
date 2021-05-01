@@ -5,12 +5,12 @@ import arrow from "../assets/img/payment-arrow.svg";
 
 export const Shipping = () => {
     return (
-        <section className="delivery">
+        <section className="shipping">
             <div className="container">
-                <div className="delivery__title">
+                <div className="shipping__title">
                     <h1>Shipping</h1>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>When will i receive my order?</h3>
                     <p>
                         We ship Monday through Friday excluding Ukraine federal
@@ -26,7 +26,7 @@ export const Shipping = () => {
                         possible.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>Do you offer free shipping?</h3>
                     <p>
                         We offer free UPS Ground Shipping on all orders over
@@ -39,7 +39,7 @@ export const Shipping = () => {
                         shipping through ShopRunner.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>Do you offer expedited shipping?</h3>
                     <p>
                         We offer both Overnight and Second Day shipping. All
@@ -56,18 +56,18 @@ export const Shipping = () => {
                         Islands, Guam, or APO/FPO addresses.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>Where do you ship?</h3>
                     <p>
                         We ship to all 50 states, Puerto Rico, U.S. Virgin
                         Islands, Guam, APO/FPO addresses, and Canada.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>Do you ship internationally?</h3>
                     <p>We only ship to Canada outside of the United States.</p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>Do you offer gift boxes?</h3>
                     <p>
                         We will carefully pack your item(s) with tissue paper in
@@ -81,19 +81,19 @@ export const Shipping = () => {
                         please place a separate order for each address.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>How much will i be charged for shipping?</h3>
                     <p>
                         Shipping costs are based on your chosen method. Total
                         shipping charges will be displayed at checkout before
                         order completion. Visit our{" "}
-                        <Link to="/shipping-methods" className="delivery__link">
+                        <Link to="/shipping-methods" className="shipping__link">
                             Shipping Methods & Charges
                         </Link>{" "}
                         page for more information.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>What is shoprunner?</h3>
                     <p>
                         ShopRunner is a membership-based program that offers
@@ -118,7 +118,7 @@ export const Shipping = () => {
                         </a>
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>What are the benefits of preordering?</h3>
                     <p>
                         Pre-ordering allows our customers to reserve
@@ -128,7 +128,7 @@ export const Shipping = () => {
                         becomes available.
                     </p>
                 </div>
-                <div className="delivery__item">
+                <div className="shipping__item">
                     <h3>My package arrived damaged, what do i do?</h3>
                     <p>
                         If you receive a package that appears to have been
@@ -136,18 +136,18 @@ export const Shipping = () => {
                         immediately so that an investigation can proceed. If you
                         need additional support from us after they begin the
                         investigation process, please{" "}
-                        <Link to="/contacts" className="delivery__link">
+                        <Link to="/contacts" className="shipping__link">
                             contact us
                         </Link>
                         . We are here to help.
                     </p>
                 </div>
 
-                <div className="delivery__btn">
-                    <Link to="/" className="delivery__link">
+                <div className="shipping__btn">
+                    <Link to="/" className="shipping__link">
                         <span className="btn-left">To catalog</span>
                     </Link>
-                    <Link to="/payment" className="delivery__link">
+                    <Link to="/payment" className="shipping__link">
                         <span className="btn-right">
                             Payment <img src={arrow} alt="" />
                         </span>
