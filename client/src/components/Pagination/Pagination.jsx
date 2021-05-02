@@ -1,27 +1,17 @@
 import React from "react";
+import { useState } from "react";
 
-export const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
-    const pageNumbers = [];
+import { Navbar } from "./Navbar";
+import { Planets } from "./Planets";
+import { People } from "./People";
 
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-        pageNumbers.push(i);
-    }
+export const Pagination = () => {
+    const [page, setPage] = useState("planets");
 
     return (
-        <nav>
-            <ul className="pagination">
-                {pageNumbers.map((number) => (
-                    <li key={number} className="page-item">
-                        <a
-                            onClick={() => paginate(number)}
-                            href="!#"
-                            className="page-link"
-                        >
-                            {number}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        <div>
+            <Navbar setPage={setPage} />
+            {page === "planets" ? <Planets /> : <People />}
+        </div>
     );
 };
