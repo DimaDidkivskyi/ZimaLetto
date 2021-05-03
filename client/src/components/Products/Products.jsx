@@ -1,16 +1,56 @@
-import React, { useMemo } from "react";
+import React from "react";
+import { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import {
+    QueryClient,
+    QueryClientProvider,
+    useQuery,
+    useQueryClient,
+} from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+import { fetchProducts } from "./api";
+import { productsPerPage } from "../../utils/config";
+import { Pagination } from "../Pagination/Pagination";
+
 export const Products = () => {
-    const { isLoading, error, data, isFetching } = useQuery("repoData", () =>
-        fetch("http://localhost:3000/product").then((res) => res.json())
-    );
+    const queryClient = useQueryClient();
+    const [page, setPage] = React.useState(1);
+
+    const {
+        status,
+        data,
+        error,
+        isFetching,
+        isPreviousData,
+        isLoading,
+    } = useQuery(["products", page], () => fetchProducts(page), {
+        keepPreviousData: true,
+        staleTime: 5000,
+    });
+
+    React.useEffect(() => {
+        if (Math.ceil(data?.productCount / productsPerPage) < page + 1) {
+            queryClient.prefetchQuery(["products", page + 1], () =>
+                fetchProducts(page + 1)
+            );
+        }
+    }, [data, page, queryClient]);
+
+    const refContainer = useRef(null);
+    React.useEffect(() => {
+        if (refContainer.current) {
+            window.scrollTo({
+                top: refContainer.current.offsetTop - 200,
+                behavior: "smooth",
+                left: refContainer.current.offsetLeft,
+            });
+        }
+    }, [page]);
 
     const ProductList = useMemo(() => {
         if (data) {
-            return data.map((product) => (
+            return data.productList.map((product) => (
                 <div className="products__item">
                     <Link to="/product" className="products__link">
                         <div className="products__img">
@@ -45,9 +85,17 @@ export const Products = () => {
 
     return (
         <section className="products">
-            <div className="container">
-                <div className="products__inner">{ProductList}</div>
+            <div className="container" ref={refContainer}>
+                <div className="products__inner">
+                    {isLoading ? <div>Loading...</div> : ProductList}
+                </div>
             </div>
+            <Pagination
+                page={page}
+                setPage={setPage}
+                productCount={data?.productCount}
+                isPreviousData={isPreviousData}
+            />
         </section>
     );
 };

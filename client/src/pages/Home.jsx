@@ -5,7 +5,6 @@ import ImageSlider from "../components/Slider/ImageSlider";
 import { SliderData } from "../components/Slider/SliderData";
 import { Categories } from "../components/Categories/Categories";
 import { Products } from "../components/Products/Products";
-import { Pagination } from "../components/Pagination/Pagination";
 
 export const Home = () => {
     const categoryNames = [
@@ -24,7 +23,6 @@ export const Home = () => {
             <ImageSlider slides={SliderData} />
             <Categories />
             <Products />
-            <Pagination />
         </div>
     );
 };
