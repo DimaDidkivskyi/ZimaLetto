@@ -1,1 +1,35 @@
 @import "./variables.scss";
+
+.pagination {
+    padding: 20px 0;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__btn {
+        width: 150px;
+        height: 55px;
+        border: none;
+        border-radius: 30px;
+        color: $white;
+        font-size: 16px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $green;
+        cursor: pointer;
+    }
+
+    &__span {
+        margin: 0 20px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 25px;
+        color: $black;
+    }
+}
