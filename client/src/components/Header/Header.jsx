@@ -31,22 +31,22 @@ export const Header = () => {
                             <ul>
                                 <Link to="/" className="header__link">
                                     <li>
-                                        <span>Каталог</span>
+                                        <span>Catalog</span>
                                     </li>
                                 </Link>
                                 <Link to="/delivery" className="header__link">
                                     <li>
-                                        <span>Доставка</span>
+                                        <span>Shipping</span>
                                     </li>
                                 </Link>
                                 <Link to="/payment" className="header__link">
                                     <li>
-                                        <span>Оплата</span>
+                                        <span>Payment</span>
                                     </li>
                                 </Link>
                                 <Link to="/contacts" className="header__link">
                                     <li>
-                                        <span>Контакты</span>
+                                        <span>Contacts</span>
                                     </li>
                                 </Link>
                             </ul>
@@ -55,7 +55,7 @@ export const Header = () => {
                     <div className="header__item">
                         <div className="header__phone">
                             <img src={headerPhone} alt="" />
-                            <span>+7 (831) 282-60-00</span>
+                            <span>+ 1-888-866-6948</span>
                         </div>
                         <button onClick={openModal} className="header__user">
                             <img src={headerPerson} alt="" />
