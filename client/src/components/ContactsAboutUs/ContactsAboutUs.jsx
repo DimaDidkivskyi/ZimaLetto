@@ -1,56 +1,44 @@
 import React from "react";
 
+import AboutUs from "../../assets/img/about-us.png";
+
 export const ContactsAboutUs = () => {
     return (
         <section className="contacts-about">
             <div className="container">
-                <h1 className="contacts-about__title">О нашем бренде</h1>
+                <h1>About us</h1>
+                <img src={AboutUs} alt="" />
+
                 <div className="contacts-about__content">
                     <p>
-                        Свои первые шаги мы начали в марте 2015 года. За более
-                        чем 4 года работы мы успели добиться хороших, на наш
-                        взгляд, результатов. За нашим брендом женской одежды для
-                        дома собственного производства стоит семья молодых
-                        предпринимателей Супрунова Маргарита и Супрунов Кирилл.
-                        Это семейный бизнес, это наше лицо и наша любовь.
+                        Zimaletto Corporation is a global leader in the design,
+                        marketing, and distribution of premium lifestyle
+                        products in five categories, including apparel,
+                        accessories, home, fragrances, and hospitality. For more
+                        than 50 years, Ralph Lauren’s reputation and distinctive
+                        image have been consistently developed across an
+                        expanding number of products, brands, and international
+                        markets. The Company’s brand names, which include Ralph
+                        Lauren Collection, Ralph Lauren Purple Label, Polo Ralph
+                        Lauren, Double RL, Lauren Ralph Lauren, Polo Ralph
+                        Lauren Children, Chaps, and Club Monaco, among others,
+                        constitute one of the world's most widely recognized
+                        families of consumer brands. We believe that our global
+                        reach, breadth of product offerings, and multichannel
+                        distribution are unique among luxury and apparel
+                        companies.
                     </p>
-                    <div className="contacts-about__list">
-                        <span>Немного фактов о нас:</span>
-                        <ul>
-                            <li>
-                                — ежедневно для улучшения качества обслуживания
-                                и продукта, мы тратим не менее 10 часов жизни
-                            </li>
-                            <li>
-                                — наш инстаграм аккаунт развили с 0
-                                до 170.000. подписчиков за 5 лет
-                            </li>
-                            <li>
-                                — наши изделия носят более  63 000 человек по
-                                всему миру.
-                            </li>
-                            <li>— огромный офис и швейный цех более 430 м2;</li>
-                            <li>
-                                — нами восхищаются более 100 блогеров, звезд и
-                                лидеров мнений
-                            </li>
-                            <li>
-                                — в неделю мы отшиваем более 2500 единиц
-                                изделий специально для Вас
-                            </li>
-                        </ul>
-                    </div>
                     <p>
-                        Как мы этого добились? Мы просто любим свое дело и не
-                        пытаемся кого-то копировать, даже наоборот — мы делаем
-                        такой продукт, который подделывают другие производители.
-                        Но достойных аналогов вы не найдете, потому что наша
-                        «мама бренда» разрабатывает беспрецедентные модели, ищет
-                        лучшие образцы тканей и кружев лично. Все это для того,
-                        чтобы Вы чувствовали себя идеально в любом месте и при
-                        любых условиях, чтобы Ваша вторая половинка при виде Вас
-                        восхищалась своей девушкой, женой, мамой, бабулей.
-                        Любите себя и балуйте красотой от Zimaletto'.
+                        Reflecting a distinctive American perspective, we have
+                        been an innovator in aspirational lifestyle branding and
+                        believe that, under the direction of internationally
+                        renowned designer Ralph Zimaletto, we have had a
+                        considerable influence on the way people dress and the
+                        way that fashion is advertised and celebrated throughout
+                        the world. We combine consumer insights with our design,
+                        marketing, and imaging skills to offer, along with our
+                        licensing alliances, broad lifestyle product collections
+                        with a unified vision.
                     </p>
                 </div>
             </div>

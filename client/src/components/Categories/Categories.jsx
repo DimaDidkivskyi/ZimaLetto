@@ -7,33 +7,33 @@ export const Categories = () => {
                 <div className="categories__content">
                     <ul>
                         <li>
-                            <a href="" className="active">
-                                Все
+                            <a href="##" className="active">
+                                All
                             </a>
                         </li>
                         <li>
-                            <a href="">Футболки</a>
+                            <a href="##">T-shirt</a>
                         </li>
                         <li>
-                            <a href="">Шорты</a>
+                            <a href="##">Shorts</a>
                         </li>
                         <li>
-                            <a href="">Кроссовки</a>
+                            <a href="##">Snickers</a>
                         </li>
                         <li>
-                            <a href="">Ветровки</a>
+                            <a href="##">Jacket</a>
                         </li>
                         <li>
-                            <a href="">Поло</a>
+                            <a href="##">Polo</a>
                         </li>
                         <li>
-                            <a href="">Джинсы</a>
+                            <a href="##">Jeans</a>
                         </li>
                         <li>
-                            <a href="">Худи</a>
+                            <a href="##">Hoodie</a>
                         </li>
                         <li>
-                            <a href="">Бейсболки</a>
+                            <a href="##">Caps</a>
                         </li>
                     </ul>
                 </div>
