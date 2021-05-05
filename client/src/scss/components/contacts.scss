@@ -182,28 +182,28 @@
 .contacts-about {
     padding: 45px 0;
 
-    &__title {
-        font-size: 24px;
+    h1 {
+        margin-bottom: 25px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 33px;
         color: $black;
+    }
+
+    img {
+        width: 100%;
+        max-width: 1170px;
+        border-radius: 10px;
     }
 
     &__content {
         p {
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 20px;
-            color: $black;
             margin: 20px 0;
-        }
-    }
-
-    &__list {
-        ul {
-            li {
-                font-size: 16px;
-                font-weight: 400;
-                list-style-type: none;
-            }
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: $black;
         }
     }
 }
