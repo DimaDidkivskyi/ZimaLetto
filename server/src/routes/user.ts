@@ -4,6 +4,7 @@ import Crypto from "crypto";
 import { IReqDataUserRegister } from "../types";
 import { createAccessToken, createRefreshToken } from "../auth/createToken";
 import { decode, verify } from "jsonwebtoken";
+import { emailSchema } from "../validation/user";
 
 export const userRouter = Router();
 
@@ -20,8 +21,7 @@ userRouter.get("/", async (req, res) => {
         });
         return res.json(productList);
     } catch (error) {
-        console.log(error);
-        return res.send("Get error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -34,37 +34,54 @@ userRouter.post("/login", async (req, res) => {
         const userRepository = req.db.getRepository(User);
         const user = await userRepository.findOne({ email: body.email });
         if (!user) {
-            return res.send("User not found");
+            return res.json({ ok: false, message: "User not found" });
         }
         const sha = Crypto.createHash("sha512").update(String(body.password));
         const result = sha.digest("hex");
         if (result !== user.password) {
-            return res.send("Incorrect password");
+            return res.json({ ok: true, message: "Incorrect password" });
         }
         createRefreshToken({ id: user.id }, res);
-        return res.send(createAccessToken({ id: user.id }));
+        return res.json({
+            ok: true,
+            token: createAccessToken({ id: user.id }),
+        });
     } catch (error) {
-        console.log(error);
-        return res.send("Login error");
+        return res.json({ ok: false, error });
     }
+});
+
+//LOGOUT
+userRouter.get("/logout", async (_req, res) => {
+    res.clearCookie("refreshToken");
+    res.json({ ok: true, message: "Success" });
 });
 
 // REGISTER
 userRouter.post("/register", async (req, res) => {
     try {
         const body: IReqDataUserRegister = req.body;
+
+        const { error } = emailSchema.validate(body);
+
+        if (error) {
+            return res.json({ ok: false, error });
+        }
+
         const userRepository = req.db.getRepository(User);
+
         const sha = Crypto.createHash("sha512").update(String(body.password));
         const result = sha.digest("hex");
+
         const user = userRepository.create({ ...body, password: result });
         await userRepository.save(user);
-        return res.send(`User created ${result}`);
+        return res.json({ ok: true, message: `User created ${result}` });
     } catch (error) {
         if (error.code === "23505") {
-            return res.send("Email already taken");
+            return res.json({ ok: false, error });
         }
-        console.log(error);
-        return res.send("User creation error");
+
+        return res.json({ ok: true, error });
     }
 });
 
@@ -79,12 +96,14 @@ userRouter.post("/refresh_token", async (req, res) => {
         ) {
             const decodeToken = decode(refreshToken) as { id: string };
             createRefreshToken({ id: decodeToken.id }, res);
-            return res.send(createAccessToken({ id: decodeToken.id }));
+            return res.json({
+                ok: true,
+                token: createAccessToken({ id: decodeToken.id }),
+            });
         }
-        return res.send("Refresh token access");
+        return res.json({ ok: true, message: "Refresh token access" });
     } catch (error) {
-        console.log(error);
-        return res.send("Refresh token error");
+        return res.json({ ok: true, error });
     }
 });
 
@@ -92,9 +111,28 @@ userRouter.get("/me", async (req, res) => {
     try {
         const userRepository = req.db.getRepository(User);
         const user = await userRepository.findOne({ id: req.user?.id });
-        console.log();
-        res.send(JSON.stringify(user));
+        return res.json({ ok: true, message: JSON.stringify(user) });
     } catch (error) {
-        console.log(error);
+        return res.json({ ok: true, error });
+    }
+});
+
+userRouter.post("/update", async (req, res) => {
+    try {
+        if (!req.user?.id) {
+            return res.json({ ok: false, message: " Not logged in" });
+        }
+        const userRepository = req.db.getRepository(User);
+
+        if (req.body.password) {
+            const sha = Crypto.createHash("sha512").update(
+                String(req.body.password)
+            );
+            req.body.password = sha.digest("hex");
+        }
+        await userRepository.update({ id: req.user?.id }, req.body);
+        return res.json({ ok: true, message: "Update is done" });
+    } catch (error) {
+        return res.json({ ok: false, error });
     }
 });
