@@ -46,7 +46,7 @@ function App() {
                     component={ConfidentialityPolicy}
                     exact
                 />
-                <Route path="/product" component={Product} exact />
+                <Route path="/product/:id" component={Product} exact />
             </div>
             <Footer />
         </div>

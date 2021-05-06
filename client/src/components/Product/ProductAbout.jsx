@@ -3,7 +3,7 @@ import React from "react";
 import productPig from "../../assets/img/pig.svg";
 import productTruck from "../../assets/img/delivery-truck.svg";
 
-export const ProductAbout = () => {
+export const ProductAbout = ({ description }) => {
     return (
         <div class="product-about">
             <div className="container">
@@ -26,19 +26,7 @@ export const ProductAbout = () => {
                                 class="tab-pane active container"
                                 id="about_product"
                             >
-                                <p>
-                                    Полутвердый пластичный однородный сыр,
-                                    слегка ломкий на изгибе. Пажитник придает
-                                    легкое ореховое послевкусие. В Италии
-                                    считается столовым сыром, который подходит к
-                                    любому времени суток и к любому блюду и к
-                                    вину
-                                </p>
-                                <p>Вес головки 500 г. +/-10%. Цена за 1 кг.</p>
-                                <p>
-                                    Продукция компании Alpenville изготовлена
-                                    преимущественно из Шарангского молока
-                                </p>
+                                <p>{description}</p>
                             </div>
                             <div
                                 class="tab-pane container"

@@ -1,6 +1,6 @@
 import React from "react";
 import { useMemo, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import {
     QueryClient,
     QueryClientProvider,
@@ -52,12 +52,15 @@ export const Products = () => {
         if (data) {
             return data.productList.map((product) => (
                 <div className="products__item">
-                    <Link to="/product" className="products__link">
+                    <Link
+                        to={`/product/${product.id}`}
+                        className="products__link"
+                    >
                         <div className="products__img">
                             <img src={product.image} alt="product" />
                         </div>
                         <div className="products__title">
-                            <a href="/">{product.name}</a>
+                            <span>{product.name}</span>
                         </div>
                     </Link>
                     <p className="products__description">
