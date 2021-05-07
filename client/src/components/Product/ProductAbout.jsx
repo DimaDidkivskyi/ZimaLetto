@@ -3,7 +3,8 @@ import React from "react";
 import productPig from "../../assets/img/pig.svg";
 import productTruck from "../../assets/img/delivery-truck.svg";
 
-export const ProductAbout = ({ description }) => {
+export const ProductAbout = ({ description, details }) => {
+    console.log(details);
     return (
         <div class="product-about">
             <div className="container">
@@ -32,23 +33,9 @@ export const ProductAbout = ({ description }) => {
                                 class="tab-pane container"
                                 id="product_parametr"
                             >
-                                <ul class="product_ul">
-                                    <li>
-                                        <b>Калории: </b>420
-                                    </li>
-                                    <li>
-                                        <b>Жиры: </b>420
-                                    </li>
-                                    <li>
-                                        <b>Белки: </b>420
-                                    </li>
-                                    <li>
-                                        <b>Углеводы: </b>420
-                                    </li>
-                                    <li>
-                                        <b>Масса: </b>420 грамм
-                                    </li>
-                                </ul>
+                                <div class="product_ul">
+                                    <p>{details}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -24,7 +24,10 @@ export const Product = () => {
                 image={product.image}
                 price={product.price}
             />
-            <ProductAbout description={product.description} />
+            <ProductAbout
+                description={product.description}
+                details={product.details}
+            />
         </div>
     );
 };
