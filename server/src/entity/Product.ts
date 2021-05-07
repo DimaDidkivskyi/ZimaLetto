@@ -23,7 +23,7 @@ export default class Product {
     @Column({ type: "varchar", nullable: false })
     description: string;
     @Column({ type: "varchar", nullable: true })
-    detailed_description: string;
+    details: string;
     @ManyToOne(() => Category, (category) => category.products)
     category: Category;
     @ManyToMany(() => SizeOptions)
