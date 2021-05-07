@@ -82,72 +82,39 @@
                 }
             }
         }
+    }
 
-        .input_range {
-            width: 116px;
-            height: 42px;
-            box-sizing: border-box;
-            border-radius: 9px;
+    &__bottom {
+        .product-info__topay {
+            margin: 10px 0 12px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-align: center;
 
             span {
-                b {
-                    font-size: 16px;
-                }
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 22px;
+                color: #000;
             }
 
-            button.button {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            b {
+                font-style: normal;
+                font-weight: 500;
                 font-size: 18px;
-                width: 30px;
-                height: 30px;
-                background: none;
-                border: 1px solid #ccc;
-                border-radius: 50%;
-                text-align: center;
-                cursor: pointer;
-
-                &.plus {
-                    color: $green;
-                }
+                line-height: 23px;
+                color: $green;
             }
-        }
-    }
-
-    &__topay {
-        margin: 10px 0 12px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        span {
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 22px;
-            color: #000;
-        }
-
-        b {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 23px;
-            color: $green;
         }
     }
 
     &__block {
         .pay-popup {
             cursor: pointer;
-            width: 215px;
+            width: 150px;
             height: 49px;
             background: $green;
-            border-radius: 5px;
+            border-radius: 50px;
             display: flex;
             justify-content: center;
             align-items: center;

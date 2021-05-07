@@ -23,6 +23,7 @@ export const Product = () => {
                 name={product.name}
                 image={product.image}
                 price={product.price}
+                product_size={product.product_size}
             />
             <ProductAbout
                 description={product.description}

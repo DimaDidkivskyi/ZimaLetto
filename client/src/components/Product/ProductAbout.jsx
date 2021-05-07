@@ -10,54 +10,32 @@ export const ProductAbout = ({ description, details }) => {
             <div className="container">
                 <div className="product-about__inner">
                     <div class="product-about__info">
-                        <ul class="nav-tabs">
-                            <li class="nav-item">
-                                <a
-                                    href="#about_product"
-                                    class="nav-link"
-                                    data-toggle="tab"
-                                >
-                                    Описание
-                                </a>
-                            </li>
-                        </ul>
+                        <div className="title">Details</div>
 
-                        <div class="tab-content">
-                            <div
-                                class="tab-pane active container"
-                                id="about_product"
-                            >
-                                <p>{description}</p>
-                            </div>
-                            <div
-                                class="tab-pane container"
-                                id="product_parametr"
-                            >
-                                <div class="product_ul">
-                                    <p>{details}</p>
-                                </div>
-                            </div>
+                        <div className="content">
+                            <p>{description}</p>
+                            <p>{details}</p>
                         </div>
                     </div>
                     <div class="product-about__sidebar">
-                        <div class="title">Закажите на 3000 RUB и получите</div>
+                        <div class="title">Order for $300 and get:</div>
                         <div class="line">
                             <img src={productPig} alt="" />
                             <span>
-                                <b>300 RUB</b> на бонусный счет
+                                <b>$30</b> to bonus account
                             </span>
                         </div>
                         <div class="line">
                             <img src={productTruck} alt="" />
                             <span>
-                                <b>Бесплатная доставка</b>
+                                <b>Free shipping</b>
                             </span>
                         </div>
                         <div class="range-slide">
                             <div
                                 class="range-line"
                                 data-mins="0"
-                                data-maxs="3000"
+                                data-maxs="300"
                             >
                                 <div
                                     class="green-line"
@@ -65,11 +43,11 @@ export const ProductAbout = ({ description, details }) => {
                                 ></div>
                                 <div
                                     class="round"
-                                    data-min="1000 (минимальный заказ)"
+                                    data-min="$150 (minimum order)"
                                 ></div>
                             </div>
                             <div class="range-text">
-                                Осталось <b>1988 RUB</b> до бесплатной доставки
+                                <b>$200 </b> left to free shipping
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 
-export const ProductInfo = ({ id, name, price, image }) => {
+export const ProductInfo = ({ id, name, price, image, product_size }) => {
+    console.log(product_size);
     return (
         <section className="product-info">
             <div className="container">
@@ -18,32 +19,31 @@ export const ProductInfo = ({ id, name, price, image }) => {
                             <span></span>
                         </div>
                         <div class="reviews">
-                            Кол-во отзывов: <span>23</span>
+                            Reviews: <span>23</span>
                         </div>
                         <div class="price">
-                            <span>Цена за шт.</span> <b>{price}</b>
+                            <span>Price per pc.</span> <b>{price}</b>
                         </div>
                         <div class="price">
-                            <span>Кол-во шт.</span> <b>1 шт.</b>
+                            <span>Count per pc.</span> <b>1 pc.</b>
                         </div>
-                        <div class="price">
-                            <span>Количество</span>
+                        <div className="price">
+                            <span>Sizes: </span>
+                            <b>
+                                {product_size &&
+                                    product_size.map(
+                                        (item, index) => item.size_name + " "
+                                    )}
+                            </b>
+                        </div>
 
-                            <div class="input_range">
-                                <button class="button">–</button>
-                                <span class="counter">
-                                    <b>1 шт.</b>
-                                </span>
-                                <button class="button">+</button>
-                            </div>
-                        </div>
                         <div class="product-info__bottom">
                             <div class="product-info__topay">
-                                <span>Итого к оплате</span>
+                                <span>Total: </span>
                                 <b>{price}</b>
                             </div>
                             <div class="product-info__block">
-                                <button class="pay-popup">Купить</button>
+                                <button class="pay-popup">Buy</button>
                             </div>
                         </div>
                     </div>
