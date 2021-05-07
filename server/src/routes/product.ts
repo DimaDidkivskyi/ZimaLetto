@@ -30,9 +30,12 @@ productRouter.get("/", async (req, res) => {
 productRouter.get("/:id", async (req, res) => {
     try {
         const productRepository = req.db.getRepository(Product);
-        const productList = await productRepository.findOne({
-            id: req.params.id,
-        });
+        const productList = await productRepository.findOne(
+            {
+                id: req.params.id,
+            },
+            { relations: ["product_size"] }
+        );
         return res.json(productList);
     } catch (error) {
         console.log(error);
