@@ -20,10 +20,10 @@ productRouter.get("/", async (req, res) => {
             skip: productPerPage * (page - 1),
             take: productPerPage,
         });
-        return res.json(productList);
+        return res.json({ ok: true, productList });
     } catch (error) {
         console.log(error);
-        return res.send("Get error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -36,10 +36,10 @@ productRouter.get("/:id", async (req, res) => {
             },
             { relations: ["product_size"] }
         );
-        return res.json(productList);
+        return res.json({ ok: true, productList });
     } catch (error) {
         console.log(error);
-        return res.send("Get one error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -63,10 +63,10 @@ productRouter.post("/", upload.single("image"), async (req, res) => {
             product_size: productsSizes,
         });
         await productRepository.save(product);
-        return res.send("Post done");
+        return res.json({ ok: true, message: "Post done" });
     } catch (error) {
         console.log(error);
-        return res.send("Post error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -96,10 +96,10 @@ productRouter.post("/:id", async (req, res) => {
         delete req.body.product_size;
         await productRepository.update({ id: req.params.id }, req.body);
 
-        return res.send("Post update is done");
+        return res.json({ ok: true, message: "Update is done" });
     } catch (error) {
         console.log(error);
-        return res.send("Post update error");
+        return res.json({ ok: false, error });
     }
 });
 // DELETE ========================
@@ -107,9 +107,9 @@ productRouter.delete("/:id", async (req, res) => {
     try {
         const productRepository = req.db.getRepository(Product);
         await productRepository.delete({ id: req.params.id });
-        return res.send("Delete is done");
+        return res.json({ ok: true, message: "Delete is done" });
     } catch (error) {
         console.log(error);
-        return res.send("Delete error");
+        return res.json({ ok: true, error });
     }
 });

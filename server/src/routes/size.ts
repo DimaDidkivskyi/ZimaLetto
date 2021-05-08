@@ -8,11 +8,11 @@ sizeRouter.get("/", async (req, res) => {
     try {
         console.log(req.db);
         console.log(SizeOptions);
-        const productRepository = req.db.getRepository(SizeOptions);
-        const productList = await productRepository.find({});
-        return res.json(productList);
+        const sizeRepository = req.db.getRepository(SizeOptions);
+        const sizeList = await sizeRepository.find({});
+        return res.json({ ok: true, sizeList });
     } catch (error) {
         console.log(error);
-        return res.send("Get error");
+        return res.json({ ok: false, error });
     }
 });
