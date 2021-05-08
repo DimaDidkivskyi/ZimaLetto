@@ -11,10 +11,10 @@ categoryRouter.get("/", async (req, res) => {
         const categoryList = await categoryRepository.find({
             relations: ["products"],
         });
-        res.json(categoryList);
+        return res.json({ ok: true, categoryList });
     } catch (error) {
         console.log(error);
-        res.send("Get error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -25,10 +25,10 @@ categoryRouter.get("/:id", async (req, res) => {
             { id: req.params.id },
             { relations: ["products"] }
         );
-        res.json(categoryList);
+        return res.json({ ok: true, categoryList });
     } catch (error) {
         console.log(error);
-        res.send("Get one error");
+        return res.send({ ok: false, error });
     }
 });
 
@@ -38,10 +38,10 @@ categoryRouter.post("/", async (req, res) => {
         const categoryRepository = req.db.getRepository(Category);
         const category = categoryRepository.create(req.body);
         await categoryRepository.save(category);
-        res.send("Post is done");
+        return res.json({ ok: true, message: "Post done" });
     } catch (error) {
         console.log(error);
-        res.send("Post error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -49,10 +49,10 @@ categoryRouter.post("/:id", async (req, res) => {
     try {
         const categoryRepository = req.db.getRepository(Category);
         await categoryRepository.update({ id: req.params.id }, req.body);
-        res.send("Post update is done");
+        return res.json({ ok: true, message: "Update done" });
     } catch (error) {
         console.log(error);
-        res.send("Post update error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -61,9 +61,9 @@ productRouter.delete("/:id", async (req, res) => {
     try {
         const categoryRepository = req.db.getRepository(Category);
         await categoryRepository.delete({ id: req.params.id });
-        res.send("Delete is done");
+        return res.json({ ok: true, message: "Delete is done" });
     } catch (error) {
         console.log(error);
-        res.send("Delete error");
+        return res.json({ ok: false, error });
     }
 });

@@ -16,10 +16,10 @@ orderRouter.get("/", async (req, res) => {
             skip: orderPerPage * (page - 1),
             take: orderPerPage,
         });
-        return res.send(orderList);
+        return res.json({ ok: true, orderList });
     } catch (error) {
         console.log(error);
-        return res.send("Get error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -27,10 +27,10 @@ orderRouter.get("/:id", async (req, res) => {
     try {
         const orderRepository = req.db.getRepository(Order);
         const orderList = await orderRepository.findOne({ id: req.params.id });
-        return res.send(orderList);
+        return res.json({ ok: true, orderList });
     } catch (error) {
         console.log(error);
-        return res.send("Get one error");
+        return res.json({ ok: false, error });
     }
 });
 
@@ -42,9 +42,9 @@ orderRouter.post("/", async (req, res) => {
         const order = orderRepository.create(body);
         // //productList it`s json
         await orderRepository.save(order);
-        return res.send("Done");
+        return res.json({ ok: true, message: "Order created" });
     } catch (error) {
         console.log(error);
-        return res.send("Post error");
+        return res.json({ ok: false, error });
     }
 });

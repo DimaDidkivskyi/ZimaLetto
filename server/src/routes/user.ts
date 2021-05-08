@@ -14,12 +14,12 @@ const userPerPage = 20;
 userRouter.get("/", async (req, res) => {
     try {
         const page = parseInt(req.query.page as string) || 0;
-        const productRepository = req.db.getRepository(User);
-        const productList = await productRepository.findAndCount({
+        const userRepository = req.db.getRepository(User);
+        const userList = await userRepository.findAndCount({
             skip: userPerPage * (page - 1),
             take: userPerPage,
         });
-        return res.json(productList);
+        return res.json({ ok: true, userList });
     } catch (error) {
         return res.json({ ok: false, error });
     }
