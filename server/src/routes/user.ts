@@ -19,7 +19,7 @@ userRouter.get("/", async (req, res) => {
             skip: userPerPage * (page - 1),
             take: userPerPage,
         });
-        return res.json({ ok: true, userList });
+        return res.json(userList);
     } catch (error) {
         return res.json({ ok: false, error });
     }

@@ -11,7 +11,7 @@ categoryRouter.get("/", async (req, res) => {
         const categoryList = await categoryRepository.find({
             relations: ["products"],
         });
-        return res.json({ ok: true, categoryList });
+        return res.json(categoryList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });
@@ -25,7 +25,7 @@ categoryRouter.get("/:id", async (req, res) => {
             { id: req.params.id },
             { relations: ["products"] }
         );
-        return res.json({ ok: true, categoryList });
+        return res.json(categoryList);
     } catch (error) {
         console.log(error);
         return res.send({ ok: false, error });
