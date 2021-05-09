@@ -20,7 +20,7 @@ productRouter.get("/", async (req, res) => {
             skip: productPerPage * (page - 1),
             take: productPerPage,
         });
-        return res.json({ ok: true, productList });
+        return res.json(productList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });
@@ -36,7 +36,7 @@ productRouter.get("/:id", async (req, res) => {
             },
             { relations: ["product_size"] }
         );
-        return res.json({ ok: true, productList });
+        return res.json(productList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });
