@@ -11,13 +11,24 @@ import headerCart from "../../assets/img/shopping-cart.svg";
 
 export const Header = () => {
     const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(false);
+
+    const changeBackground = () => {
+        if (window.scrollY >= 400) {
+            setHeader(true);
+        } else {
+            setHeader(false);
+        }
+    };
+
+    window.addEventListener("scroll", changeBackground);
 
     const openModal = () => {
         setShowModal((prev) => !prev);
     };
 
     return (
-        <div className="header">
+        <div className={header ? "header active" : "header"}>
             <div className="container">
                 <div className="header__inner">
                     <div className="header__item">
