@@ -10,7 +10,7 @@ sizeRouter.get("/", async (req, res) => {
         console.log(SizeOptions);
         const sizeRepository = req.db.getRepository(SizeOptions);
         const sizeList = await sizeRepository.find({});
-        return res.json({ ok: true, sizeList });
+        return res.json(sizeList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });

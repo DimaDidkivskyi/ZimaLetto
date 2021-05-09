@@ -16,7 +16,7 @@ orderRouter.get("/", async (req, res) => {
             skip: orderPerPage * (page - 1),
             take: orderPerPage,
         });
-        return res.json({ ok: true, orderList });
+        return res.json(orderList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });
@@ -27,7 +27,7 @@ orderRouter.get("/:id", async (req, res) => {
     try {
         const orderRepository = req.db.getRepository(Order);
         const orderList = await orderRepository.findOne({ id: req.params.id });
-        return res.json({ ok: true, orderList });
+        return res.json(orderList);
     } catch (error) {
         console.log(error);
         return res.json({ ok: false, error });
