@@ -54,9 +54,12 @@
             padding-top: 20px;
 
             img {
+                border-radius: 5px;
                 width: 115px;
                 height: 150px;
-                margin-right: 15px;
+                margin-right: 25px;
+                background: $white;
+                box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
             }
 
             .title {
@@ -98,6 +101,83 @@
 
         .price {
             margin: 0 100px;
+        }
+    }
+
+    &__footer {
+        padding: 30px 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .left,
+        .right {
+            p {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 22px;
+                line-height: 27px;
+                letter-spacing: 0.01em;
+                color: #000000;
+            }
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__btn {
+        padding: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .left-btn,
+        .right-btn {
+            display: flex;
+            align-items: center;
+        }
+
+        .left-btn {
+            button {
+                cursor: pointer;
+                width: 211px;
+                height: 55px;
+                background: #ffffff;
+                border: 1px solid #d3d3d3;
+                box-sizing: border-box;
+                border-radius: 30px;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                color: #cacaca;
+
+                img {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .right-btn {
+            button {
+                border: none;
+                cursor: pointer;
+                width: 211px;
+                height: 55px;
+                background: #fe5f1e;
+                box-sizing: border-box;
+                border-radius: 30px;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                color: $white;
+            }
         }
     }
 
