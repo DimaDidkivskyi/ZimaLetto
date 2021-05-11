@@ -57,7 +57,7 @@ userRouter.get("/logout", async (_req, res) => {
     res.json({ ok: true, message: "Success" });
 });
 
-// REGISTER
+// REGISTRATION
 userRouter.post("/register", async (req, res) => {
     try {
         const body: IReqDataUserRegister = req.body;
@@ -75,7 +75,11 @@ userRouter.post("/register", async (req, res) => {
 
         const user = userRepository.create({ ...body, password: result });
         await userRepository.save(user);
-        return res.json({ ok: true, message: `User created ${result}` });
+        return res.json({
+            ok: true,
+            message: "User created",
+            token: createAccessToken({ id: user.id }),
+        });
     } catch (error) {
         if (error.code === "23505") {
             return res.json({ ok: false, error });
@@ -103,7 +107,7 @@ userRouter.post("/refresh_token", async (req, res) => {
         }
         return res.json({ ok: true, message: "Refresh token access" });
     } catch (error) {
-        return res.json({ ok: true, error });
+        return res.json({ ok: false, error });
     }
 });
 
