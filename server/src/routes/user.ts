@@ -58,7 +58,7 @@ userRouter.get("/logout", async (_req, res) => {
 });
 
 // REGISTRATION
-userRouter.post("/register", async (req, res) => {
+userRouter.post("/registration", async (req, res) => {
     try {
         const body: IReqDataUserRegister = req.body;
 
