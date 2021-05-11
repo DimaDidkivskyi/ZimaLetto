@@ -105,7 +105,7 @@ userRouter.post("/refresh_token", async (req, res) => {
                 token: createAccessToken({ id: decodeToken.id }),
             });
         }
-        return res.json({ ok: true, message: "Refresh token access" });
+        return res.json({ ok: false, message: "Failed refresh token" });
     } catch (error) {
         return res.json({ ok: false, error });
     }
@@ -115,9 +115,9 @@ userRouter.get("/me", async (req, res) => {
     try {
         const userRepository = req.db.getRepository(User);
         const user = await userRepository.findOne({ id: req.user?.id });
-        return res.json({ ok: true, message: JSON.stringify(user) });
+        return res.json({ ok: true, user });
     } catch (error) {
-        return res.json({ ok: true, error });
+        return res.json({ ok: false, error });
     }
 });
 
