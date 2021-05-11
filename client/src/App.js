@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import { Route } from "react-router-dom";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
@@ -15,12 +17,31 @@ import { Cart } from "./pages/Cart";
 import { TermsConditions } from "./pages/TermsConditions";
 import { ConfidentialityPolicy } from "./pages/ConfidentialityPolicy";
 import { Product } from "./pages/Product";
+import { Profile } from "./pages/Profile";
 
 function App() {
     const location = useLocation();
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, [location]);
+
+    axios.interceptors.request.use(async function (config) {
+        let token = localStorage.getItem("token");
+        if (token) {
+            const decoded = jwt_decode(token);
+            if (decoded.exp * 1000 <= Date.now()) {
+                const result = await fetch(
+                    "http://localhost:3000/api/user/refresh_token",
+                    { method: "POST", credentials: "include" }
+                );
+                const json = await result.json();
+                token = json.token;
+            }
+        }
+
+        config.headers.authorization = "Bearer " + token;
+        return config;
+    });
 
     return (
         <div className="wrapper">
@@ -47,6 +68,7 @@ function App() {
                     exact
                 />
                 <Route path="/product/:id" component={Product} exact />
+                <Route path="/profile" component={Profile} exact />
             </div>
             <Footer />
         </div>

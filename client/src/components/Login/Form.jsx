@@ -1,6 +1,14 @@
 import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
+import axios from "axios";
+import {
+    useQuery,
+    useQueryClient,
+    useMutation,
+    QueryClient,
+    QueryClientProvider,
+} from "react-query";
 
 import { FormSignup } from "./FormSignup";
 import { FormSuccess } from "./FormSuccess";
@@ -10,11 +18,31 @@ import Img2 from "../../assets/img/img-2.svg";
 
 export const Form = ({ showModal, setShowModal }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const mutation = useMutation(
+        (newTodo) =>
+            axios.post("http://localhost:3000/api/user/registration", newTodo),
+        {
+            onSuccess: ({ data }) => {
+                localStorage.setItem("token", data.token);
+                console.log(data);
+            },
+        }
+    );
 
-    const submitForm = () => {
-        setIsSubmitted(true);
-        myFetch("/api/user/register", {});
-    };
+    const { refetch, data } = useQuery("me", () =>
+        axios.get("http://localhost:3000/api/user/me")
+    );
+
+    console.log(data);
+
+    const submitForm = useCallback(
+        async (values) => {
+            await mutation.mutateAsync(values);
+            await refetch();
+            setIsSubmitted(true);
+        },
+        [mutation]
+    );
 
     const closeModalByButton = () => {
         setShowModal((prev) => !prev);

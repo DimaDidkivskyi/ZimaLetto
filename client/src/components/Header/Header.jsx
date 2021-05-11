@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 import { Form } from "../Login/Form";
 
@@ -12,6 +14,7 @@ import headerCart from "../../assets/img/shopping-cart.svg";
 export const Header = () => {
     const [showModal, setShowModal] = useState(false);
     const [header, setHeader] = useState(false);
+    const history = useHistory();
 
     const changeBackground = () => {
         if (window.scrollY >= 400) {
@@ -27,6 +30,9 @@ export const Header = () => {
         setShowModal((prev) => !prev);
     };
 
+    const { data } = useQuery("me", () =>
+        axios.get("http://localhost:3000/api/user/me")
+    );
     return (
         <div className={header ? "header active" : "header"}>
             <div className="container">
@@ -68,7 +74,16 @@ export const Header = () => {
                             <img src={headerPhone} alt="" />
                             <span>+ 1-888-866-6948</span>
                         </div>
-                        <button onClick={openModal} className="header__user">
+                        <button
+                            onClick={
+                                data?.data?.user
+                                    ? () => {
+                                          history.push("/profile");
+                                      }
+                                    : openModal
+                            }
+                            className="header__user"
+                        >
                             <img src={headerPerson} alt="" />
                         </button>
                         <Form
