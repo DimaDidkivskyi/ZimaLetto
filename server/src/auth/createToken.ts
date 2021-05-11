@@ -9,6 +9,18 @@ export const createRefreshToken = (
     payload: Parameters<typeof sign>[0],
     res: Response
 ) => {
+    if (process.env.NODE_ENV === "development") {
+        res.cookie(
+            "refreshToken",
+            sign(payload, process.env.JWT_SECRET || "", { expiresIn: "7d" }),
+            {
+                httpOnly: true,
+                sameSite: "none",
+                secure: false,
+            }
+        );
+        return;
+    }
     res.cookie(
         "refreshToken",
         sign(payload, process.env.JWT_SECRET || "", { expiresIn: "7d" }),
