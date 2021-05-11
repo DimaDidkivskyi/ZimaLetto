@@ -75,6 +75,7 @@ userRouter.post("/registration", async (req, res) => {
 
         const user = userRepository.create({ ...body, password: result });
         await userRepository.save(user);
+        createRefreshToken({ id: user.id }, res);
         return res.json({
             ok: true,
             message: "User created",
