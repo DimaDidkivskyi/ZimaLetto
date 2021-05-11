@@ -25,9 +25,16 @@ userRouter.get("/", async (req, res) => {
     }
 });
 
+const cors = require("cors");
+
+const corsOptions = {
+    origin: [process.env.APP_URL || ""],
+    credentials: true,
+};
+
 // POST =========================
 // LOGIN
-userRouter.post("/login", async (req, res) => {
+userRouter.post("/login", cors(corsOptions), async (req, res) => {
     try {
         console.log(req.user);
         const body: IReqDataUserRegister = req.body;
@@ -58,7 +65,7 @@ userRouter.get("/logout", async (_req, res) => {
 });
 
 // REGISTRATION
-userRouter.post("/registration", async (req, res) => {
+userRouter.post("/registration", cors(corsOptions), async (req, res) => {
     try {
         const body: IReqDataUserRegister = req.body;
 
