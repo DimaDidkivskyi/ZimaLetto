@@ -23,7 +23,7 @@ export const FormSignup = ({ submitForm }) => {
                     <input
                         id="username"
                         type="text"
-                        name="username"
+                        name="fname"
                         className="form-input"
                         placeholder="Enter your username"
                         value={values.username}
