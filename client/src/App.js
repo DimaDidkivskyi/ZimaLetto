@@ -28,18 +28,26 @@ function App() {
     axios.interceptors.request.use(async function (config) {
         let token = localStorage.getItem("token");
         if (token) {
-            const decoded = jwt_decode(token);
-            if (decoded.exp * 1000 <= Date.now()) {
-                const result = await fetch(
-                    "http://localhost:3000/api/user/refresh_token",
-                    { method: "POST", credentials: "include" }
-                );
-                const json = await result.json();
-                token = json.token;
-            }
+            try {
+                const decoded = jwt_decode(token);
+                // if (decoded.exp * 1000 <= Date.now()) {
+
+                // }
+
+                config.headers.authorization = "Bearer " + token;
+            } catch (e) {}
         }
 
-        config.headers.authorization = "Bearer " + token;
+        const result = await fetch(
+            "http://localhost:3000/api/user/refresh_token",
+            { method: "POST", credentials: "include", mode: "cors" }
+        );
+        const json = await result.json();
+        token = json.token;
+        localStorage.setItem("token", token);
+        config.headers.withCredentials = true;
+        config.headers.mode = "cors";
+
         return config;
     });
 
