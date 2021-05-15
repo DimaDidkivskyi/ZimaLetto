@@ -106,23 +106,27 @@
                 color: $green;
             }
         }
-    }
 
-    &__block {
-        .pay-popup {
-            cursor: pointer;
-            width: 150px;
-            height: 49px;
-            background: $green;
-            border-radius: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 23px;
-            color: #fff;
-            border: none;
+        .product-info__block {
+            .router-link {
+                text-decoration: none;
+            }
+
+            button {
+                cursor: pointer;
+                width: 150px;
+                height: 49px;
+                background: $green;
+                border-radius: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 23px;
+                color: #fff;
+                border: none;
+            }
         }
     }
 }
