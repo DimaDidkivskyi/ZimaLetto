@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductInfo = ({ id, name, price, image, product_size }) => {
     console.log(product_size);
@@ -43,7 +44,9 @@ export const ProductInfo = ({ id, name, price, image, product_size }) => {
                                 <b>{price}</b>
                             </div>
                             <div class="product-info__block">
-                                <button class="pay-popup">Buy</button>
+                                <Link to="/cart" className="router-link">
+                                    <button>To cart</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
