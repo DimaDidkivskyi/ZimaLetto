@@ -1,8 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const ProductInfo = ({ id, name, price, image, product_size }) => {
-    console.log(product_size);
+import { Button } from "../Button/Button";
+
+export const ProductInfo = ({
+    id,
+    name,
+    price,
+    image,
+    product_size,
+    addProductToCart,
+}) => {
+    const onAddProduct = () => {
+        const obj = {
+            id,
+            name,
+            image,
+            price,
+            product_size,
+        };
+        addProductToCart(obj);
+    };
+
     return (
         <section className="product-info">
             <div className="container">
@@ -45,7 +64,12 @@ export const ProductInfo = ({ id, name, price, image, product_size }) => {
                             </div>
                             <div class="product-info__block">
                                 <Link to="/cart" className="router-link">
-                                    <button>To cart</button>
+                                    <Button
+                                        onClick={onAddProduct}
+                                        className="button"
+                                    >
+                                        To cart
+                                    </Button>
                                 </Link>
                             </div>
                         </div>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { addProductCart } from "../redux/actions/cart";
 
 import { ProductInfo } from "../components/Product/ProductInfo";
 import { ProductAbout } from "../components/Product/ProductAbout";
@@ -15,7 +18,16 @@ export const Product = () => {
             console.log(data);
         };
         fetchOneProduct();
-    }, []);
+    }, [id]);
+
+    const dispatch = useDispatch();
+
+    const handleAddProductToCart = (obj) => {
+        dispatch({
+            type: "ADD_PRODUCT_CART",
+            payload: obj,
+        });
+    };
 
     return (
         <div>
@@ -24,6 +36,8 @@ export const Product = () => {
                 image={product.image}
                 price={product.price}
                 product_size={product.product_size}
+                addProductToCart={handleAddProductToCart}
+                key={product.id}
             />
             <ProductAbout
                 description={product.description}
