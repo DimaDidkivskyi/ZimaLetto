@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useSelector } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -21,6 +21,7 @@ export const Product = () => {
     }, [id]);
 
     const dispatch = useDispatch();
+    // const cartItems = useSelector(({ cart }) => cart.items);
 
     const handleAddProductToCart = (obj) => {
         dispatch({
