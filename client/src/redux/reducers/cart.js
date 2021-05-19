@@ -11,7 +11,7 @@ const cart = (state = initialState, action) => {
         case "ADD_PRODUCT_CART": {
             const currentProductItems = !state.items[action.payload.id]
                 ? [action.payload]
-                : [...state.items[action.payload.id], action.payload];
+                : [...state.items[action.payload.id].items, action.payload];
 
             const newItems = {
                 ...state.items,
@@ -21,8 +21,8 @@ const cart = (state = initialState, action) => {
                 },
             };
 
-            const items = Object.values(newItems);
-            const allProducts = [].concat.apply([]);
+            const items = Object.values(newItems).map((obj) => obj.items);
+            const allProducts = [].concat.apply([], items);
             const totalPrice = getTotalPrice(allProducts);
 
             return {
@@ -32,6 +32,26 @@ const cart = (state = initialState, action) => {
                 totalPrice,
             };
         }
+
+        case "CLEAR_CART":
+            return {
+                totalPrice: 0,
+                totalCount: 0,
+                items: {},
+            };
+
+        case "REMOVE_CART_ITEM":
+            const newItems = {
+                ...state.items,
+            };
+            const currentTotalPrice = newItems[action.payload].totalPrice;
+            delete newItems[action.payload];
+
+            return {
+                ...state,
+                items: newItems,
+                totalPrice: state.totalPrice - currentTotalPrice,
+            };
 
         default:
             return state;
