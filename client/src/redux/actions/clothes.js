@@ -18,11 +18,11 @@ export const fetchClothes = (sortBy, category) => (dispatch) => {
             }&_sort=${sortBy.type}&_order=${sortBy.order}`
         )
         .then(({ data }) => {
-            dispatch(setPizzas(data));
+            dispatch(setProducts(data));
         });
 };
 
-export const setPizzas = (items) => ({
-    type: "SET_PIZZAS",
+export const setProducts = (items) => ({
+    type: "SET_PRODUCTS",
     payload: items,
 });

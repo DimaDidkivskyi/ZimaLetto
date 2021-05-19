@@ -5,7 +5,7 @@ const initialState = {
 
 const clothes = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_PIZZAS":
+        case "SET_PRODUCTS":
             return {
                 ...state,
                 items: action.payload,

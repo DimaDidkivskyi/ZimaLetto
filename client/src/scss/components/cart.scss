@@ -32,6 +32,7 @@
             align-items: flex-end;
 
             span {
+                cursor: pointer;
                 margin-left: 7px;
                 font-style: normal;
                 font-weight: normal;
@@ -187,14 +188,14 @@
         text-align: center;
 
         h2 {
-            font-size: 32px;
+            font-size: 30px;
             margin-bottom: 10px;
         }
 
         p {
-            font-size: 18px;
+            font-size: 20px;
             line-height: 145.4%;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.03em;
             color: #777777;
         }
 
@@ -207,21 +208,6 @@
             display: block;
             width: 300px;
             margin: 45px auto 60px;
-        }
-
-        a {
-            padding: 12px 20px;
-            width: 167px;
-            height: 53px;
-            background: $green;
-            border-radius: 25px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 21px;
-            text-align: center;
-            color: $white;
-            text-decoration: none;
         }
 
         &__link {
