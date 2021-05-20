@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 import { CartItem } from "../components/Cart/CartItem";
 import { Button } from "../components/Button/Button";
 
-import { clearCart, removeCartItem } from "../redux/actions/cart";
+import {
+    clearCart,
+    removeCartItem,
+    plusCartItem,
+    minusCartItem,
+} from "../redux/actions/cart";
 
 import imgCart from "../assets/img/cart-cart.svg";
 import imgTrash from "../assets/img/cart-trash.svg";
@@ -32,6 +37,18 @@ export const Cart = () => {
         }
     };
 
+    const onPlusItem = (id) => {
+        dispatch(plusCartItem(id));
+    };
+
+    const onMinusItem = (id) => {
+        dispatch(minusCartItem(id));
+    };
+
+    const onClickOrder = () => {
+        console.log("Your order: ", items);
+    };
+
     return (
         <section className="cart">
             <div className="container">
@@ -50,12 +67,15 @@ export const Cart = () => {
                         <div className="cart__items">
                             {addedClothes.map((obj) => (
                                 <CartItem
+                                    key={obj.id}
                                     id={obj.id}
                                     name={obj.name}
                                     size="XL"
                                     totalPrice={items[obj.id].totalPrice}
                                     totalCount={items[obj.id].items.length}
                                     onRemove={onRemoveCartItem}
+                                    onMinus={onMinusItem}
+                                    onPlus={onPlusItem}
                                 />
                             ))}
                         </div>
@@ -80,7 +100,7 @@ export const Cart = () => {
                                 </button>
                             </div>
                             <div className="right-btn">
-                                <button>Pay now</button>
+                                <button onClick={onClickOrder}>Pay now</button>
                             </div>
                         </div>
                     </div>

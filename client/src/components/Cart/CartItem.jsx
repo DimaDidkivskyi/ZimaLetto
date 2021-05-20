@@ -9,13 +9,23 @@ export const CartItem = ({
     id,
     name,
     size,
+    image,
     totalPrice,
     totalCount,
     onRemove,
-    image,
+    onMinus,
+    onPlus,
 }) => {
     const handleRemoveClick = () => {
         onRemove(id);
+    };
+
+    const handleMinusItem = () => {
+        onMinus(id);
+    };
+
+    const handlePlusItem = () => {
+        onPlus(id);
     };
 
     return (
@@ -28,11 +38,11 @@ export const CartItem = ({
                 </div>
             </div>
             <div className="cart-center">
-                <button className="btn">
+                <button onClick={handleMinusItem} className="btn">
                     <img src={cartMinus} alt="minus" />
                 </button>
                 <span className="count">{totalCount}</span>
-                <button className="btn">
+                <button onClick={handlePlusItem} className="btn">
                     <img src={cartPlus} alt="minus" />
                 </button>
             </div>
