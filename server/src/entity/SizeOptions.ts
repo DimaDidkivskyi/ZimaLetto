@@ -5,8 +5,10 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export default class SizeOptions {
     @PrimaryGeneratedColumn("uuid")
     id: string;
+
     @Column({ type: "varchar", nullable: false })
     size_name: string;
-    @Column({ type: "varchar", nullable: false })
+
+    @Column({ type: "varchar", nullable: true })
     size_description: string;
 }

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Order from "../entity/Order";
+import Product from "../entity/Product";
 import { IReqDataOrder } from "../types";
 
 export const orderRouter = Router();
@@ -39,8 +40,17 @@ orderRouter.post("/", async (req, res) => {
     try {
         const body: IReqDataOrder = req.body;
         const orderRepository = req.db.getRepository(Order);
-        const order = orderRepository.create(body);
-        // //productList it`s json
+        const productRepository = req.db.getRepository(Product);
+        const orderProducts = await productRepository.find({
+            where: body.products.map((product) => {
+                return { id: product };
+            }),
+        });
+        const order = orderRepository.create({
+            ...body,
+            userId: req.user?.id,
+            products: orderProducts,
+        });
         await orderRepository.save(order);
         return res.json({ ok: true, message: "Order created" });
     } catch (error) {
