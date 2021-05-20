@@ -5,6 +5,7 @@ import { IReqDataUserRegister } from "../types";
 import { createAccessToken, createRefreshToken } from "../auth/createToken";
 import { decode, verify } from "jsonwebtoken";
 import { emailSchema } from "../validation/user";
+import { isAuthMiddleware } from "../utils/isAuth";
 
 export const userRouter = Router();
 
@@ -86,7 +87,7 @@ userRouter.post("/registration", async (req, res) => {
             return res.json({ ok: false, error });
         }
 
-        return res.json({ ok: true, error });
+        return res.json({ ok: false, error });
     }
 });
 
@@ -112,7 +113,7 @@ userRouter.post("/refresh_token", async (req, res) => {
     }
 });
 
-userRouter.get("/me", async (req, res) => {
+userRouter.get("/me", isAuthMiddleware, async (req, res) => {
     try {
         const userRepository = req.db.getRepository(User);
         const user = await userRepository.findOne({ id: req.user?.id });
@@ -122,11 +123,8 @@ userRouter.get("/me", async (req, res) => {
     }
 });
 
-userRouter.post("/update", async (req, res) => {
+userRouter.post("/update", isAuthMiddleware, async (req, res) => {
     try {
-        if (!req.user?.id) {
-            return res.json({ ok: false, message: " Not logged in" });
-        }
         const userRepository = req.db.getRepository(User);
 
         if (req.body.password) {
