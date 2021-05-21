@@ -6,8 +6,10 @@ import Product from "./Product";
 export default class Category {
     @PrimaryGeneratedColumn("uuid")
     id: string;
+
     @Column({ type: "varchar", nullable: false })
     name: string;
+
     @OneToMany(() => Product, (product) => product.category)
     products: Product[];
 }
