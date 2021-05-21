@@ -7,7 +7,7 @@ const initialState = {
 const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
 const _get = (obj, path) => {
     const [firstKey, ...keys] = path.split(".");
-    keys.reduce((val, key) => {
+    return keys.reduce((val, key) => {
         return val[key];
     }, obj[firstKey]);
 };
@@ -65,6 +65,7 @@ const cart = (state = initialState, action) => {
                     totalPrice: getTotalPrice(newObjItems),
                 },
             };
+
             const totalCount = getTotalSum(newItems, "items.length");
             const totalPrice = getTotalSum(newItems, "totalPrice");
 
@@ -88,6 +89,7 @@ const cart = (state = initialState, action) => {
                     totalPrice: getTotalPrice(newObjItems),
                 },
             };
+
             const totalCount = getTotalSum(newItems, "items.length");
             const totalPrice = getTotalSum(newItems, "totalPrice");
 
@@ -99,7 +101,7 @@ const cart = (state = initialState, action) => {
             };
         }
 
-        case "REMOVE_CART_ITEM":
+        case "REMOVE_CART_ITEM": {
             const newItems = {
                 ...state.items,
             };
@@ -113,6 +115,7 @@ const cart = (state = initialState, action) => {
                 totalPrice: state.totalPrice - currentTotalPrice,
                 totalCount: state.totalCount - currentTotalCount,
             };
+        }
 
         default:
             return state;

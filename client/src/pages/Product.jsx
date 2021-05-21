@@ -10,6 +10,9 @@ import { ProductAbout } from "../components/Product/ProductAbout";
 export const Product = () => {
     let { id } = useParams();
     const [product, setProduct] = useState([]);
+    const dispatch = useDispatch();
+    // const cartItems = useSelector(({ cart }) => cart.items);
+
     useEffect(() => {
         const fetchOneProduct = async () => {
             const resp = await fetch(`http://localhost:3000/api/product/${id}`);
@@ -20,9 +23,6 @@ export const Product = () => {
         fetchOneProduct();
     }, [id]);
 
-    const dispatch = useDispatch();
-    // const cartItems = useSelector(({ cart }) => cart.items);
-
     const handleAddProductToCart = (obj) => {
         dispatch({
             type: "ADD_PRODUCT_CART",
@@ -32,6 +32,21 @@ export const Product = () => {
 
     return (
         <div>
+            {/* {product &&
+                product.data.map((obj) => (
+                    <ProductInfo
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                        product_size={product.product_size}
+                        addProductToCart={handleAddProductToCart}
+                        key={product.id}
+                        addedCount={
+                            cartItems[obj.id] && cartItems[obj.id].items.length
+                        }
+                        {...obj}
+                    />
+                ))} */}
             <ProductInfo
                 name={product.name}
                 image={product.image}
