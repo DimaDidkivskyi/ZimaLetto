@@ -1,9 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
+import { render } from "react-dom";
 import { useLocation } from "react-router";
 import { Route } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { Admin, Resource } from "react-admin";
+import simpleRestProvider from "ra-data-simple-rest";
+
+import { PostList, PostEdit, PostCreate, PostIcon } from "./utils/posts";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
