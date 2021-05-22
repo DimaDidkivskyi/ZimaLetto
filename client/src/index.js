@@ -9,7 +9,7 @@ import store from "./redux/store";
 import "./scss/style.scss";
 import App from "./App";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 ReactDOM.render(
     <QueryClientProvider client={queryClient}>

@@ -6,7 +6,7 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { Admin, Resource } from "react-admin";
-import simpleRestProvider from "ra-data-simple-rest";
+// import simpleRestProvider from "ra-data-simple-rest";
 
 import { PostList, PostEdit, PostCreate, PostIcon } from "./utils/posts";
 
@@ -35,21 +35,20 @@ function App() {
         if (token) {
             try {
                 const decoded = jwt_decode(token);
-                // if (decoded.exp * 1000 <= Date.now()) {
-
-                // }
+                if (decoded.exp * 1000 <= Date.now()) {
+                    const result = await fetch(
+                        "http://localhost:3000/api/user/refresh_token",
+                        { method: "POST", credentials: "include", mode: "cors" }
+                    );
+                    const json = await result.json();
+                    token = json.token;
+                    localStorage.setItem("token", token);
+                }
 
                 config.headers.authorization = "Bearer " + token;
             } catch (e) {}
         }
 
-        const result = await fetch(
-            "http://localhost:3000/api/user/refresh_token",
-            { method: "POST", credentials: "include", mode: "cors" }
-        );
-        const json = await result.json();
-        token = json.token;
-        localStorage.setItem("token", token);
         config.headers.withCredentials = true;
         config.headers.mode = "cors";
 
