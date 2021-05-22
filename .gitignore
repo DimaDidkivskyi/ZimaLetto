@@ -6,6 +6,7 @@ build
 JSONFolder
 .pnp
 .pnp.js
+server/public
 
 # testing
 coverage

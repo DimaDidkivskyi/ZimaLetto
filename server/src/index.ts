@@ -17,6 +17,7 @@ const port = process.env.PORT || 3000;
 openConnection().then(async (connection) => {
     // const hello = await connection.getRepository("Product").find();
     const app = express();
+    app.use(express.static("public"));
     app.use(cors({ origin: [process.env.APP_URL || ""], credentials: true }));
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
