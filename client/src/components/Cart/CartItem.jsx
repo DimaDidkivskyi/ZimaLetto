@@ -1,6 +1,7 @@
 import React from "react";
 
-import imgProduct from "../../assets/img/products.png";
+import { Button } from "../Button/Button";
+
 import cartMinus from "../../assets/img/cart-minus.svg";
 import cartPlus from "../../assets/img/cart-plus.svg";
 import cartRemove from "../../assets/img/cart-remove.svg";
@@ -30,25 +31,27 @@ export const CartItem = ({
 
     return (
         <div className="cart__item">
-            <div className="cart-left">
-                <img src={imgProduct} alt={name} />
-                <div className="content">
-                    <div className="title">{name}</div>
-                    <div className="size">Medium size, {size}</div>
+            <div className="cart__item-img">
+                <img src={image} alt={name} />
+            </div>
+            <div className="cart__item-info">
+                <h3>{name}</h3>
+                <p>Medium size, {size}</p>
+            </div>
+            <div className="cart__item-count">
+                <div onClick={handleMinusItem}>
+                    <img src={cartMinus} alt="minus" />
+                </div>
+                <b>{totalCount}</b>
+                <div onClick={handlePlusItem}>
+                    <img src={cartMinus} alt="minus" />
                 </div>
             </div>
-            <div className="cart-center">
-                <button onClick={handleMinusItem} className="btn">
-                    <img src={cartMinus} alt="minus" />
-                </button>
-                <span className="count">{totalCount}</span>
-                <button onClick={handlePlusItem} className="btn">
-                    <img src={cartPlus} alt="minus" />
-                </button>
+            <div className="cart__item-price">
+                <b>${totalPrice}</b>
             </div>
-            <div className="cart-right">
-                <span className="price">{totalPrice}</span>
-                <button onClick={handleRemoveClick} className="btn btn--remove">
+            <div className="cart__item-remove">
+                <button onClick={handleRemoveClick}>
                     <img src={cartRemove} alt="remove" />
                 </button>
             </div>

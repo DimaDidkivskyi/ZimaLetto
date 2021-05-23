@@ -3,203 +3,250 @@
 .cart {
     padding: 50px 0;
 
-    &__title {
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content__title {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        font-size: 32px;
 
-        .cart-left {
-            display: flex;
-            align-items: center;
-            padding-bottom: 30px;
-
-            img {
-                margin-right: 10px;
-            }
-
-            h2 {
-                font-style: normal;
-                font-weight: bold;
-                font-size: 30px;
-                line-height: 39px;
-                letter-spacing: 0.01em;
-                color: $black;
+        svg {
+            position: relative;
+            top: -2px;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            path {
+                stroke: $black;
+                stroke-width: 1.9;
             }
         }
+    }
 
-        .cart-right {
-            display: flex;
-            align-items: flex-end;
+    &__clear {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
 
+        span {
+            display: inline-block;
+            margin-left: 7px;
+            color: #b6b6b6;
+            font-size: 18px;
+        }
+
+        span,
+        svg,
+        path {
+            transition: all $duration ease-in-out;
+        }
+
+        &:hover {
+            svg {
+                path {
+                    stroke: darken($color: #b6b6b6, $amount: 50);
+                }
+            }
             span {
-                cursor: pointer;
-                margin-left: 7px;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 19px;
-                color: #b6b6b6;
+                color: darken($color: #b6b6b6, $amount: 50);
             }
         }
     }
 
     &__item {
         display: flex;
-        justify-content: space-between;
+        width: 100%;
+        border-top: 1px solid $gray-line;
+        padding-top: 30px;
+        margin-top: 30px;
 
-        border-top: 2px solid #f4f4f4;
-        height: 200px;
-
-        .cart-left {
+        &-img {
             display: flex;
-            padding-top: 20px;
+            align-items: center;
+            margin-right: 15px;
 
             img {
-                border-radius: 5px;
-                width: 115px;
+                width: 120px;
                 height: 150px;
-                margin-right: 25px;
-                background: $white;
-                box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             }
+        }
 
-            .title {
-                font-style: normal;
+        &-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 40%;
+
+            h3 {
                 font-weight: bold;
                 font-size: 22px;
                 line-height: 27px;
                 letter-spacing: 0.01em;
-                color: $black;
-                margin-bottom: 5px;
             }
 
-            .size {
-                font-style: normal;
-                font-weight: normal;
+            p {
                 font-size: 18px;
-                line-height: 22px;
-                letter-spacing: 0.01em;
                 color: #8d8d8d;
             }
         }
 
-        .cart-center,
-        .cart-right {
+        &-count {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            width: 10%;
+            cursor: pointer;
+
+            &-minus {
+                svg {
+                    path:first-of-type {
+                        display: none;
+                    }
+                }
+            }
+
+            b {
+                font-size: 22px;
+            }
         }
 
-        .count,
-        .price {
-            margin: 0 12px;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 22px;
-            line-height: 27px;
-            letter-spacing: 0.01em;
-            color: $black;
+        &-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 33%;
+
+            b {
+                font-weight: bold;
+                font-size: 22px;
+                letter-spacing: 0.01em;
+            }
         }
 
-        .price {
-            margin: 0 100px;
+        &-remove {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 4%;
+            cursor: pointer;
+
+            .button {
+                border: none;
+                background: transparent;
+            }
+
+            svg {
+                transform: rotate(45deg);
+
+                path {
+                    fill: darken($color: $gray-line, $amount: 15);
+                }
+            }
+
+            .button {
+                svg {
+                    width: 11.5px;
+                    height: 11.5px;
+                    position: relative;
+                }
+                &:hover,
+                &:active {
+                    border-color: darken($color: $gray-line, $amount: 80);
+                    background-color: darken($color: $gray-line, $amount: 80);
+                }
+            }
         }
     }
 
-    &__footer {
-        padding: 30px 0;
+    &__bottom {
+        margin: 50px 0;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .left,
-        .right {
-            p {
-                font-style: normal;
-                font-weight: normal;
-                font-size: 22px;
-                line-height: 27px;
-                letter-spacing: 0.01em;
-                color: #000000;
-            }
+        &-details {
+            display: flex;
+            justify-content: space-between;
 
             span {
-                font-weight: 700;
-            }
-        }
-    }
+                font-size: 22px;
 
-    &__btn {
-        padding: 30px 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .left-btn,
-        .right-btn {
-            display: flex;
-            align-items: center;
-        }
-
-        .left-btn {
-            button {
-                cursor: pointer;
-                width: 211px;
-                height: 55px;
-                background: #ffffff;
-                border: 1px solid #d3d3d3;
-                box-sizing: border-box;
-                border-radius: 30px;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 19px;
-                text-align: center;
-                color: #cacaca;
-
-                img {
-                    margin-right: 10px;
+                &:last-of-type {
+                    b {
+                        color: $orange;
+                    }
                 }
             }
         }
 
-        .right-btn {
-            button {
-                border: none;
-                cursor: pointer;
-                width: 211px;
-                height: 55px;
-                background: #fe5f1e;
-                box-sizing: border-box;
-                border-radius: 30px;
-                font-style: normal;
-                font-weight: normal;
+        &-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+
+            .go-back-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 210px;
+
+                border-color: darken($color: $gray-line, $amount: 10);
+
+                span {
+                    color: darken($color: $gray-line, $amount: 20);
+                    font-weight: 500;
+                    font-weight: 600;
+                }
+
+                &:hover {
+                    background-color: darken($color: $gray-line, $amount: 90);
+                    border-color: darken($color: $gray-line, $amount: 90);
+
+                    span {
+                        color: $gray-line;
+                    }
+                }
+
+                svg {
+                    margin-right: 12px;
+                    path {
+                        fill: transparent;
+                        stroke-width: 2;
+                    }
+                }
+            }
+
+            .pay-btn {
                 font-size: 16px;
-                line-height: 19px;
-                text-align: center;
-                color: $white;
+                font-weight: 600;
+                width: 210px;
+                padding: 16px;
             }
         }
     }
 
     &--empty {
+        padding: 50px 0;
         margin: 0 auto;
         width: 560px;
         text-align: center;
 
         h2 {
-            font-size: 30px;
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
         p {
-            font-size: 20px;
+            font-size: 18px;
             line-height: 145.4%;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.01em;
             color: #777777;
         }
 
-        icon {
+        i {
+            font-style: normal;
             position: relative;
             top: 2px;
         }
@@ -210,13 +257,16 @@
             margin: 45px auto 60px;
         }
 
-        &__link {
-            text-decoration: none;
+        .button--black {
+            padding: 12px 0 14px;
+            width: 230px;
+            margin: 0 auto;
+            font-weight: 600;
+            font-size: 18px;
         }
     }
-    .btn {
-        cursor: pointer;
-        border: none;
-        background: transparent;
+
+    &__link {
+        text-decoration: none;
     }
 }

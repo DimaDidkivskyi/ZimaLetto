@@ -5,10 +5,7 @@ import { useLocation } from "react-router";
 import { Route } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { Admin, Resource } from "react-admin";
-// import simpleRestProvider from "ra-data-simple-rest";
-
-import { PostList, PostEdit, PostCreate, PostIcon } from "./utils/posts";
+import { useSelector } from "react-redux";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
@@ -26,9 +23,14 @@ import { Profile } from "./pages/Profile";
 
 function App() {
     const location = useLocation();
+    const items = useSelector(({ cart }) => cart);
+
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, [location]);
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(items));
+    }, [items]);
 
     axios.interceptors.request.use(async function (config) {
         let token = localStorage.getItem("token");

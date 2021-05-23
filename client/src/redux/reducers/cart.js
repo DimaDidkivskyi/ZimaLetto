@@ -4,7 +4,10 @@ const initialState = {
     totalCount: 0,
 };
 
-const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
+const storedCart = JSON.parse(localStorage.getItem("cart"));
+
+const getTotalPrice = (arr) =>
+    arr.reduce((sum, obj) => parseFloat(obj.price.replace("$", "")) + sum, 0);
 const _get = (obj, path) => {
     const [firstKey, ...keys] = path.split(".");
     return keys.reduce((val, key) => {
@@ -19,7 +22,7 @@ const getTotalSum = (obj, path) => {
     }, 0);
 };
 
-const cart = (state = initialState, action) => {
+const cart = (state = storedCart || initialState, action) => {
     switch (action.type) {
         case "ADD_PRODUCT_CART": {
             const currentProductItems = !state.items[action.payload.id]

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useSelector } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addProductCart } from "../redux/actions/cart";
 
@@ -11,7 +11,7 @@ export const Product = () => {
     let { id } = useParams();
     const [product, setProduct] = useState([]);
     const dispatch = useDispatch();
-    // const cartItems = useSelector(({ cart }) => cart.items);
+    const cartItems = useSelector(({ cart }) => cart.items);
 
     useEffect(() => {
         const fetchOneProduct = async () => {
@@ -30,31 +30,33 @@ export const Product = () => {
         });
     };
 
+    console.log(product);
+
     return (
         <div>
-            {/* {product &&
-                product.data.map((obj) => (
-                    <ProductInfo
-                        name={product.name}
-                        image={product.image}
-                        price={product.price}
-                        product_size={product.product_size}
-                        addProductToCart={handleAddProductToCart}
-                        key={product.id}
-                        addedCount={
-                            cartItems[obj.id] && cartItems[obj.id].items.length
-                        }
-                        {...obj}
-                    />
-                ))} */}
-            <ProductInfo
+            {product && (
+                <ProductInfo
+                    name={product.name}
+                    image={product.image}
+                    price={product.price}
+                    product_size={product.product_size}
+                    addProductToCart={handleAddProductToCart}
+                    key={product.id}
+                    addedCount={
+                        cartItems[product.id] &&
+                        cartItems[product.id].items.length
+                    }
+                    {...product}
+                />
+            )}
+            {/* <ProductInfo
                 name={product.name}
                 image={product.image}
                 price={product.price}
                 product_size={product.product_size}
                 addProductToCart={handleAddProductToCart}
                 key={product.id}
-            />
+            /> */}
             <ProductAbout
                 description={product.description}
                 details={product.details}
