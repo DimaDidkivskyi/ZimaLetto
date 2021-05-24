@@ -107,8 +107,14 @@
             }
         }
 
-        .router-link {
-            text-decoration: none;
+        .product-info__block {
+            span {
+                padding: 20px;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 22px;
+                color: $white;
+            }
         }
     }
 }

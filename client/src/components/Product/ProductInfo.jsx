@@ -52,7 +52,7 @@ export const ProductInfo = ({
                             <b>
                                 {product_size &&
                                     product_size.map(
-                                        (item, index) => item.size_name + " "
+                                        (item) => item.size_name + " "
                                     )}
                             </b>
                         </div>
@@ -63,12 +63,12 @@ export const ProductInfo = ({
                                 <b>{price}</b>
                             </div>
                             <div class="product-info__block">
-                                <Link to="/cart" className="router-link">
+                                <Link to="/cart" className="react-router__link">
                                     <Button
                                         onClick={onAddProduct}
-                                        className="button"
+                                        className="button pay-btn"
                                     >
-                                        To cart
+                                        <span>To cart</span>
                                     </Button>
                                 </Link>
                             </div>
