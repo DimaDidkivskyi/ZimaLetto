@@ -49,14 +49,6 @@ export const Product = () => {
                     {...product}
                 />
             )}
-            {/* <ProductInfo
-                name={product.name}
-                image={product.image}
-                price={product.price}
-                product_size={product.product_size}
-                addProductToCart={handleAddProductToCart}
-                key={product.id}
-            /> */}
             <ProductAbout
                 description={product.description}
                 details={product.details}

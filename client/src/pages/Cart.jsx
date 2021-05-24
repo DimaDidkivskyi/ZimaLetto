@@ -12,9 +12,6 @@ import {
     minusCartItem,
 } from "../redux/actions/cart";
 
-import imgCart from "../assets/img/cart-cart.svg";
-import imgTrash from "../assets/img/cart-trash.svg";
-import imgArrow from "../assets/img/cart-left-arrow.svg";
 import cartEmpty from "../assets/img/empty-cart.png";
 
 export const Cart = () => {
@@ -158,6 +155,7 @@ export const Cart = () => {
                             <a
                                 href="/"
                                 className="button button--outline button--add go-back-btn"
+                                style={{ textDecoration: "none" }}
                             >
                                 <svg
                                     width="8"
@@ -174,7 +172,7 @@ export const Cart = () => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                <Link to="/" className="cart__link">
+                                <Link to="/" className="react-router__link ">
                                     <span>Come back</span>
                                 </Link>
                             </a>
@@ -195,8 +193,8 @@ export const Cart = () => {
                         To place an order, go to the main page.
                     </p>
                     <img src={cartEmpty} alt={items.name} />
-                    <Link to="/" className="cart__link">
-                        <Button className="button button--cart">
+                    <Link to="/" className="react-router__link">
+                        <Button className="button button--black">
                             <span>Come back</span>
                         </Button>
                     </Link>
