@@ -12,8 +12,13 @@
     &__item {
         position: relative;
         width: 320px;
-        height: 610px;
-        margin-bottom: 56px;
+        height: 550px;
+        margin-bottom: 55px;
+        transition: $duration linear;
+
+        &:hover {
+            transform: translate3d(0, -10px, 0);
+        }
     }
 
     &__img {
@@ -37,12 +42,12 @@
             font-weight: 700;
             font-size: 18px;
             line-height: 22px;
-            color: #333;
+            color: $light-black;
             text-decoration: none;
             transition: $duration;
 
             &:hover {
-                color: $green;
+                color: $orange;
             }
         }
     }
@@ -50,60 +55,19 @@
     &__description {
         font-size: 14px;
         line-height: 19px;
-        color: #000;
-    }
-
-    &__rating {
-        span {
-            background: url(../../assets/img/empty-star.svg);
-            width: 15px;
-            height: 15px;
-            display: inline-block;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            &.active {
-                background: url(../../assets/img/star.svg);
-                background-position: center;
-                background-repeat: no-repeat;
-            }
-        }
+        color: $light-black;
     }
 
     &__price {
         b {
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 23px;
-            color: #000;
-            margin-right: 18px;
-        }
-    }
-
-    &__to-cart {
-        span {
             position: absolute;
             left: 0;
             bottom: 0;
-            margin-top: 13px;
-            width: 140px;
-            height: 38px;
-            background: $green;
-            border-radius: 5px;
-            line-height: 38px;
-            text-align: center;
+            font-weight: 500;
             font-size: 18px;
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: none;
-            }
+            line-height: 23px;
+            color: $orange;
+            margin-right: 18px;
         }
-    }
-
-    &__link {
-        text-decoration: none;
     }
 }

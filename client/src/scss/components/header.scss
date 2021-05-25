@@ -41,7 +41,7 @@
                     transition: $duration linear;
 
                     &:hover {
-                        color: $green;
+                        color: $orange;
                     }
                 }
             }
@@ -66,12 +66,8 @@
         display: flex;
         margin-right: 50px;
 
-        img {
-            height: 20px;
-            margin-right: 5px;
-        }
-
         span {
+            margin-left: 5px;
             font-weight: 500;
             font-size: 18px;
             line-height: 21px;

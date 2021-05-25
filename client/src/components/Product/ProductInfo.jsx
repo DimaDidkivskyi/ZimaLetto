@@ -31,13 +31,6 @@ export const ProductInfo = ({
                     </div>
                     <div class="product-info__sidebar">
                         <div class="title">{name}</div>
-                        <div class="rating">
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span class="active"></span>
-                            <span></span>
-                        </div>
                         <div class="reviews">
                             Reviews: <span>23</span>
                         </div>

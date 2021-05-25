@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .footer {
-    background: $green;
+    background: $light-black;
     padding: 34px 0;
     color: #fff;
 
@@ -112,7 +112,11 @@
         font-size: 12px;
         line-height: 32px;
 
-        a {
+        .margin {
+            margin-left: 0;
+        }
+
+        span {
             font-size: 12px;
             line-height: 32px;
             margin-left: 33px;

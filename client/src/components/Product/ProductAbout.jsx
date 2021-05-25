@@ -14,6 +14,7 @@ export const ProductAbout = ({ description, details }) => {
 
                         <div className="content">
                             <p>{description}</p>
+                            <br />
                             <p>{details}</p>
                         </div>
                     </div>
@@ -30,25 +31,6 @@ export const ProductAbout = ({ description, details }) => {
                             <span>
                                 <b>Free shipping</b>
                             </span>
-                        </div>
-                        <div class="range-slide">
-                            <div
-                                class="range-line"
-                                data-mins="0"
-                                data-maxs="300"
-                            >
-                                <div
-                                    class="green-line"
-                                    style={{ width: 60 + "%" }}
-                                ></div>
-                                <div
-                                    class="round"
-                                    data-min="$150 (minimum order)"
-                                ></div>
-                            </div>
-                            <div class="range-text">
-                                <b>$200 </b> left to free shipping
-                            </div>
                         </div>
                     </div>
                 </div>
