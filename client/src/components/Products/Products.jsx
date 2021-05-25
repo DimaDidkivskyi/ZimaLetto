@@ -1,13 +1,7 @@
 import React from "react";
 import { useMemo, useRef } from "react";
-import { Link, Route } from "react-router-dom";
-import {
-    QueryClient,
-    QueryClientProvider,
-    useQuery,
-    useQueryClient,
-} from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { Link } from "react-router-dom";
+import { useQuery, useQueryClient } from "react-query";
 
 import { fetchProducts } from "./api";
 import { productsPerPage } from "../../utils/config";
@@ -17,17 +11,14 @@ export const Products = () => {
     const queryClient = useQueryClient();
     const [page, setPage] = React.useState(1);
 
-    const {
-        status,
-        data,
-        error,
-        isFetching,
-        isPreviousData,
-        isLoading,
-    } = useQuery(["products", page], () => fetchProducts(page), {
-        keepPreviousData: true,
-        staleTime: 5000,
-    });
+    const { data, isPreviousData, isLoading } = useQuery(
+        ["products", page],
+        () => fetchProducts(page),
+        {
+            keepPreviousData: true,
+            staleTime: 5000,
+        }
+    );
 
     React.useEffect(() => {
         if (Math.ceil(data?.productCount / productsPerPage) < page + 1) {
@@ -41,7 +32,7 @@ export const Products = () => {
     React.useEffect(() => {
         if (refContainer.current) {
             window.scrollTo({
-                top: refContainer.current.offsetTop - 200,
+                top: refContainer.current.offsetTop - 230,
                 behavior: "smooth",
                 left: refContainer.current.offsetLeft,
             });
@@ -54,7 +45,7 @@ export const Products = () => {
                 <div className="products__item">
                     <Link
                         to={`/product/${product.id}`}
-                        className="products__link"
+                        className="react-router__link"
                     >
                         <div className="products__img">
                             <img src={product.image} alt="product" />
@@ -66,20 +57,8 @@ export const Products = () => {
                     <p className="products__description">
                         {product.description}
                     </p>
-                    <div className="products__rating">
-                        <span className="active"></span>
-                        <span className="active"></span>
-                        <span className="active"></span>
-                        <span className="active"></span>
-                        <span></span>
-                    </div>
                     <div className="products__price">
                         <b>{product.price}</b>
-                    </div>
-                    <div className="products__to-cart">
-                        <Link to="/product" className="products__link">
-                            <span>О товаре</span>
-                        </Link>
                     </div>
                 </div>
             ));

@@ -10,8 +10,8 @@
     }
 
     &__btn {
-        width: 150px;
-        height: 55px;
+        width: 100px;
+        height: 50px;
         border: none;
         border-radius: 30px;
         color: $white;
@@ -20,14 +20,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: $green;
+        background: $orange;
         cursor: pointer;
+        transition: $duration linear;
+
+        &:hover {
+            background: $light-black;
+        }
     }
 
     &__span {
         margin: 0 20px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: bold;
         font-size: 20px;
         line-height: 25px;
         color: $black;

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Person from "../../assets/img/person2.svg";
+
 export const Footer = () => {
     return (
         <footer className="footer">
@@ -9,51 +11,59 @@ export const Footer = () => {
                     <div className="footer__left">
                         <div className="phones">
                             <div className="phone-item">
-                                <span>Бесплатный звонок по РФ</span>
-                                <a href="tel:+78312826000">
-                                    +7 (831) 282-60-00
-                                </a>
+                                <span>Free call: </span>
+                                <a href="tel:+78312826000">+1 (888) 866-6948</a>
                             </div>
                             <div className="phone-item">
-                                <span>Для приема заказов</span>
-                                <a href="tel:+79040664685">
-                                    +7 (904) 066-46-685
-                                </a>
+                                <span>To receive orders:</span>
+                                <a href="tel:+79040664685">+1 (888) 945-4632</a>
                             </div>
                         </div>
                         <div className="work-time">
-                            График работы по будням с 9:00 до 18:00
+                            Work schedule on weekdays from 9:00am to 18:00pm
                         </div>
                         <div className="work-email">
-                            <a href="mailto:info@.ru">Email: info@.ru</a>
-                            <a href="" className="site-help">
-                                Поддержка
+                            <a
+                                href="https://www.google.com/intl/ru/gmail/about/"
+                                target="blank"
+                            >
+                                Email: zimaletto@gmail.ru
                             </a>
                         </div>
                     </div>
                     <div className="footer__center">
                         <div className="social">
-                            <a href="">Мы в вконтакте</a>
-                            <a href="">Мы в instagram</a>
+                            <a
+                                href="https://www.instagram.com/?hl=us"
+                                target="blank"
+                            >
+                                We are in Instagram
+                            </a>
+                            <a
+                                href="https://twitter.com/?lang=us"
+                                target="blank"
+                            >
+                                We are in Twitter
+                            </a>
                         </div>
                     </div>
                     <div className="footer__right">
                         <div className="person">
-                            <a href="">
-                                <img src="/img/person2.svg" alt="" />
-                                <span>Войти/Регистрация</span>
-                            </a>
+                            <Link to="/contacts">
+                                <img src={Person} alt="" />
+                                <span>Contacts</span>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div className="footer__bottom">
-                    <span>©2021. «Zimaletto»</span>
+                    <span className="margin">©2021. «Zimaletto»</span>
                     <Link to="/terms-conditions">
-                        <a href="">Условия и соглашения</a>
+                        <span>Terms and conditions</span>
                     </Link>
 
                     <Link to="/confidentiality-policy">
-                        <a href="">Политика конфиденциальности</a>
+                        <span>Confidentiality policy</span>
                     </Link>
                 </div>
             </div>

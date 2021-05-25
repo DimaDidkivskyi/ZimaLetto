@@ -21,7 +21,7 @@ export const Pagination = ({ page, setPage, productCount, isPreviousData }) => {
                         onClick={previousPage}
                         disabled={page === 1}
                     >
-                        Previous
+                        Prev
                     </button>
                     <span className="pagination__span">{page}</span>
                     <button

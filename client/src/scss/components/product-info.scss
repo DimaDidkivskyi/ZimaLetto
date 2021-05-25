@@ -42,19 +42,6 @@
             margin-bottom: -20px;
         }
 
-        .rating {
-            span {
-                background: url(../../assets/img/empty-star.svg);
-                width: 13px;
-                height: 13px;
-                display: inline-block;
-
-                &.active {
-                    background: url(../../assets/img/star.svg);
-                }
-            }
-        }
-
         .reviews {
             font-style: normal;
             font-weight: normal;
@@ -103,7 +90,7 @@
                 font-weight: 500;
                 font-size: 18px;
                 line-height: 23px;
-                color: $green;
+                color: $black;
             }
         }
 
