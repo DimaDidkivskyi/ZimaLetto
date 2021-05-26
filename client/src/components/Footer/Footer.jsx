@@ -24,10 +24,10 @@ export const Footer = () => {
                         </div>
                         <div className="work-email">
                             <a
-                                href="https://www.google.com/intl/ru/gmail/about/"
+                                href="https://www.google.com/intl/us/gmail/about/"
                                 target="blank"
                             >
-                                Email: zimaletto@gmail.ru
+                                Email: zimaletto@gmail.com
                             </a>
                         </div>
                     </div>
