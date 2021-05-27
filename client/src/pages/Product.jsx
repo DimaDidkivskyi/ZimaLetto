@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addProductCart } from "../redux/actions/cart";
 
-import { ProductInfo } from "../components/Product/ProductInfo";
-import { ProductAbout } from "../components/Product/ProductAbout";
+import { Header, Footer, ProductInfo, ProductAbout } from "../components";
 
 export const Product = () => {
     let { id } = useParams();
@@ -34,6 +33,7 @@ export const Product = () => {
 
     return (
         <div>
+            <Header />
             {product && (
                 <ProductInfo
                     name={product.name}
@@ -53,6 +53,7 @@ export const Product = () => {
                 description={product.description}
                 details={product.details}
             />
+            <Footer />
         </div>
     );
 };

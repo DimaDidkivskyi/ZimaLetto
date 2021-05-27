@@ -1,7 +1,9 @@
 @import "./variables.scss";
 
 .shipping {
-    padding: 45px 0 60px;
+    &__inner {
+        padding: 45px 0 60px;
+    }
 
     &__title {
         h1 {
@@ -27,13 +29,13 @@
         color: $black;
 
         a {
-            color: $green;
+            color: $orange;
             font-weight: bold;
             text-decoration: none;
             transition: 0.2s linear;
 
             &:hover {
-                color: red;
+                text-decoration: underline;
             }
         }
 
@@ -56,8 +58,8 @@
             padding: 12px 25px;
             width: 167px;
             height: 53px;
-            background: $green;
-            border-radius: 7px;
+            background: $orange;
+            border-radius: 30px;
             font-style: normal;
             font-weight: 500;
             font-size: 20px;
@@ -77,13 +79,13 @@
     }
 
     &__link {
-        color: $green;
+        color: $orange;
         font-weight: bold;
         text-decoration: none;
         transition: 0.2s linear;
 
         &:hover {
-            color: red;
+            text-decoration: underline;
         }
     }
 }

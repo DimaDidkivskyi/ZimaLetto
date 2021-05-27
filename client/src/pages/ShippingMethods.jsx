@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Header, Footer } from "../components";
+
 export const ShippingMethods = () => {
     return (
         <section className="shipping">
+            <Header />
             <div className="container">
                 <h1 className="shipping__title">Shipping Methods & Charges</h1>
 
@@ -81,6 +84,7 @@ export const ShippingMethods = () => {
                     </p>
                 </div>
             </div>
+            <Footer />
         </section>
     );
 };

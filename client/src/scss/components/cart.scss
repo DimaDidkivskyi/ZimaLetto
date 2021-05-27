@@ -1,7 +1,9 @@
 @import "./variables.scss";
 
 .cart {
-    padding: 50px 0;
+    &__inner {
+        padding: 69px 0;
+    }
 
     &__top {
         display: flex;
