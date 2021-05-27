@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Header, Footer } from "../components";
+
 export const ConfidentialityPolicy = () => {
     return (
         <section className="confidentiality">
+            <Header />
             <div className="container">
                 <div className="confidentiality__title">
                     <h1>Политика конфиденциальности</h1>
@@ -401,6 +404,7 @@ export const ConfidentialityPolicy = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </section>
     );
 };

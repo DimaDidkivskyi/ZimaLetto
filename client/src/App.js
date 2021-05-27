@@ -7,19 +7,18 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useSelector } from "react-redux";
 
-import { Header } from "./components/Header/Header";
-import { Footer } from "./components/Footer/Footer";
-
-import { Home } from "./pages/Home";
-import { Shipping } from "./pages/Shipping";
-import { ShippingMethods } from "./pages/ShippingMethods";
-import { Payment } from "./pages/Payment";
-import { Contacts } from "./pages/Contacts";
-import { Cart } from "./pages/Cart";
-import { TermsConditions } from "./pages/TermsConditions";
-import { ConfidentialityPolicy } from "./pages/ConfidentialityPolicy";
-import { Product } from "./pages/Product";
-import { Profile } from "./pages/Profile";
+import {
+    Cart,
+    ConfidentialityPolicy,
+    Contacts,
+    Home,
+    Payment,
+    Product,
+    Profile,
+    Shipping,
+    ShippingMethods,
+    TermsConditions,
+} from "./pages";
 
 function App() {
     const location = useLocation();
@@ -59,7 +58,6 @@ function App() {
 
     return (
         <div className="wrapper">
-            <Header />
             <div className="content">
                 <Route path="/" component={Home} exact />
                 <Route path="/delivery" component={Shipping} exact />
@@ -84,7 +82,6 @@ function App() {
                 <Route path="/product/:id" component={Product} exact />
                 <Route path="/profile" component={Profile} exact />
             </div>
-            <Footer />
         </div>
     );
 }

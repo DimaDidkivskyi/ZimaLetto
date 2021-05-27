@@ -10,6 +10,8 @@ import axios from "axios";
 
 import { queryClient } from "..";
 
+import { Header, Footer } from "../components";
+
 export const Profile = () => {
     const mutation = useMutation(async () => {
         await queryClient.removeQueries("me");
@@ -19,9 +21,11 @@ export const Profile = () => {
 
     return (
         <div>
+            <Header />
             asdan
             <h2>profile</h2>
             <button onClick={mutation.mutate}>Log out</button>
+            <Footer />
         </div>
     );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 
-import { ContactsCart } from "../components/ContactsCart/ContactsCart";
-import { ContactsAboutUs } from "../components/ContactsAboutUs/ContactsAboutUs";
+import { Header, Footer, ContactsAboutUs } from "../components";
 
 export const Contacts = () => {
     return (
         <div>
+            <Header />
             <ContactsAboutUs />
-            {/* <ContactsCart /> */}
+            <Footer />
         </div>
     );
 };

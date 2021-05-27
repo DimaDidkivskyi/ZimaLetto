@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Header, Footer } from "../components";
+
 export const TermsConditions = () => {
     return (
         <section className="terms">
+            <Header />
             <div className="container">
                 <div className="terms__content">
                     <div className="terms__title">
@@ -373,6 +376,7 @@ export const TermsConditions = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </section>
     );
 };

@@ -1,10 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
+import {
+    Header,
+    Footer,
+    SliderData,
+    Categories,
+    Products,
+} from "../components";
 import ImageSlider from "../components/Slider/ImageSlider";
-import { SliderData } from "../components/Slider/SliderData";
-import { Categories } from "../components/Categories/Categories";
-import { Products } from "../components/Products/Products";
 
 export const Home = () => {
     const categoryNames = [
@@ -20,9 +24,11 @@ export const Home = () => {
 
     return (
         <div>
+            <Header />
             <ImageSlider slides={SliderData} />
             <Categories />
             <Products />
+            <Footer />
         </div>
     );
 };

@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from "react-query";
 
 import { fetchProducts } from "./api";
 import { productsPerPage } from "../../utils/config";
-import { Pagination } from "../Pagination/Pagination";
+import { Pagination } from "../Pagination";
 
 export const Products = () => {
     const queryClient = useQueryClient();
