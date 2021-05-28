@@ -19,8 +19,11 @@ import Img2 from "../../assets/img/img-2.svg";
 export const Form = ({ showModal, setShowModal }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const mutation = useMutation(
-        (newTodo) =>
-            axios.post("http://localhost:3000/api/user/registration", newTodo),
+        (credentials) =>
+            axios.post(
+                "http://localhost:3000/api/user/registration",
+                credentials
+            ),
         {
             onSuccess: ({ data }) => {
                 localStorage.setItem("token", data.token);
