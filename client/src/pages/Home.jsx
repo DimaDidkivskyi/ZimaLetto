@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 import {
     Header,
@@ -11,16 +10,16 @@ import {
 import ImageSlider from "../components/Slider/ImageSlider";
 
 export const Home = () => {
-    const categoryNames = [
-        "Футболки",
-        "Шорты",
-        "Кроссовки",
-        "Ветровки",
-        "Поло",
-        "Джинсы",
-        "Худи",
-        "Бейсболки",
-    ];
+    // const categoryNames = [
+    //     "Футболки",
+    //     "Шорты",
+    //     "Кроссовки",
+    //     "Ветровки",
+    //     "Поло",
+    //     "Джинсы",
+    //     "Худи",
+    //     "Бейсболки",
+    // ];
 
     return (
         <div>

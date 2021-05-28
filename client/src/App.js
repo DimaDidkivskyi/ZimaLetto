@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { render } from "react-dom";
 import { useLocation } from "react-router";
 import { Route } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +14,7 @@ import {
     Home,
     Payment,
     Product,
+    ProductList,
     Profile,
     Shipping,
     ShippingMethods,
@@ -72,6 +72,7 @@ function App() {
                 <Route path="/" component={Home} exact />
                 <Route path="/payment" component={Payment} exact />
                 <Route path="/product/:id" component={Product} exact />
+                <Route path="/product-list" component={ProductList} exact />
                 <Route path="/profile" component={Profile} exact />
                 <Route path="/delivery" component={Shipping} exact />
                 <Route
@@ -85,6 +86,7 @@ function App() {
                     exact
                 />
                 <Route path="/test-admin" component={TestAdmin} exact />
+                <Route path="/test-admin/:id" component={TestAdmin} exact />
             </div>
         </div>
     );

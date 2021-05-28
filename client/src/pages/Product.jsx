@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addProductCart } from "../redux/actions/cart";
-
 import { Header, Footer, ProductInfo, ProductAbout } from "../components";
 
 export const Product = () => {
@@ -17,7 +15,6 @@ export const Product = () => {
             const resp = await fetch(`http://localhost:3000/api/product/${id}`);
             const data = await resp.json();
             setProduct(data);
-            console.log(data);
         };
         fetchOneProduct();
     }, [id]);
@@ -28,8 +25,6 @@ export const Product = () => {
             payload: obj,
         });
     };
-
-    console.log(product);
 
     return (
         <div>
@@ -50,6 +45,7 @@ export const Product = () => {
                 />
             )}
             <ProductAbout
+                key={product.id}
                 description={product.description}
                 details={product.details}
             />

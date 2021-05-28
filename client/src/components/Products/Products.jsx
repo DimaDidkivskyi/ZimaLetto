@@ -42,7 +42,7 @@ export const Products = () => {
     const ProductList = useMemo(() => {
         if (data) {
             return data.productList.map((product) => (
-                <div className="products__item">
+                <div key={product.id} className="products__item">
                     <Link
                         to={`/product/${product.id}`}
                         className="react-router__link"

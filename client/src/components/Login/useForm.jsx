@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const useForm = (callback, validate) => {
     const [values, setValues] = useState({
@@ -8,6 +8,7 @@ export const useForm = (callback, validate) => {
         password2: "",
     });
     const [errors, setErrors] = useState({});
+    // eslint-disable-next-line no-unused-vars
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
