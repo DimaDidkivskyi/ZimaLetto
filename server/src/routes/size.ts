@@ -6,8 +6,6 @@ export const sizeRouter = Router();
 // GET ===========================
 sizeRouter.get("/", async (req, res) => {
     try {
-        console.log(req.db);
-        console.log(SizeOptions);
         const sizeRepository = req.db.getRepository(SizeOptions);
         const sizeList = await sizeRepository.find({});
         return res.json(sizeList);
