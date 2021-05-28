@@ -8,9 +8,7 @@ export const categoryRouter = Router();
 categoryRouter.get("/", async (req, res) => {
     try {
         const categoryRepository = req.db.getRepository(Category);
-        const categoryList = await categoryRepository.find({
-            relations: ["products"],
-        });
+        const categoryList = await categoryRepository.find({});
         return res.json(categoryList);
     } catch (error) {
         console.log(error);

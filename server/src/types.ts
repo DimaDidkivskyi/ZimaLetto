@@ -13,6 +13,8 @@ export interface IReqDataProduct {
     price: number;
     image: string;
     description: string;
+    details: string;
+    is_visible: string;
     category: any;
     product_size: string[];
 }
