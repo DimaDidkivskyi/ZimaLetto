@@ -4,7 +4,6 @@ import productPig from "../../assets/img/pig.svg";
 import productTruck from "../../assets/img/delivery-truck.svg";
 
 export const ProductAbout = ({ description, details }) => {
-    console.log(details);
     return (
         <div class="product-about">
             <div className="container">

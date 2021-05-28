@@ -2,17 +2,10 @@ import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
-import {
-    useQuery,
-    useQueryClient,
-    useMutation,
-    QueryClient,
-    QueryClientProvider,
-} from "react-query";
+import { useQuery, useMutation } from "react-query";
 
 import { FormSignup } from "./FormSignup";
 import { FormSuccess } from "./FormSuccess";
-import { myFetch } from "../../utils/myFetch";
 
 import Img2 from "../../assets/img/img-2.svg";
 
@@ -27,16 +20,13 @@ export const Form = ({ showModal, setShowModal }) => {
         {
             onSuccess: ({ data }) => {
                 localStorage.setItem("token", data.token);
-                console.log(data);
             },
         }
     );
 
-    const { refetch, data } = useQuery("me", () =>
+    const { refetch } = useQuery("me", () =>
         axios.get("http://localhost:3000/api/user/me")
     );
-
-    console.log(data);
 
     const submitForm = useCallback(
         async (values) => {
@@ -44,7 +34,7 @@ export const Form = ({ showModal, setShowModal }) => {
             await refetch();
             setIsSubmitted(true);
         },
-        [mutation]
+        [mutation, refetch]
     );
 
     const closeModalByButton = () => {
