@@ -51,7 +51,7 @@ productRouter.post("/", upload.single("image"), async (req, res) => {
         const body: IReqDataProduct = req.body;
         const productRepository = req.db.getRepository(Product);
         const sizeRepository = req.db.getRepository(SizeOptions);
-        await exportFile(req.file);
+        const image = await exportFile(req.file);
         const productsSizes = await sizeRepository.find({
             where: body.product_size.map((size) => {
                 return { id: size };
@@ -59,6 +59,7 @@ productRouter.post("/", upload.single("image"), async (req, res) => {
         });
         const product = productRepository.create({
             ...body,
+            image,
             product_size: productsSizes,
         });
         await productRepository.save(product);
