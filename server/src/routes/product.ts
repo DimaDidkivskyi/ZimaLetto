@@ -48,7 +48,6 @@ const upload = multer();
 // POST ==========================
 productRouter.post("/", upload.single("image"), async (req, res) => {
     try {
-        console.log(req.file);
         const body: IReqDataProduct = req.body;
         const productRepository = req.db.getRepository(Product);
         const sizeRepository = req.db.getRepository(SizeOptions);
@@ -87,7 +86,6 @@ productRouter.post("/:id", async (req, res) => {
                 return { id: size };
             }),
         });
-        console.log(product.product_size);
         await productRepository
             .createQueryBuilder()
             .relation(Product, "product_size")
