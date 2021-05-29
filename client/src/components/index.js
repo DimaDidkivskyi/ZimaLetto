@@ -5,6 +5,7 @@ export { ContactsAboutUs } from "./ContactsAboutUs";
 export { ContactsCart } from "./ContactsCart";
 export { Footer } from "./Footer";
 export { Header } from "./Header";
+export { HeaderAdmin } from "./HeaderAdmin";
 export { Form } from "./Login/Form";
 export { FormSignup } from "./Login/FormSignup";
 export { FormSuccess } from "./Login/FormSuccess";
