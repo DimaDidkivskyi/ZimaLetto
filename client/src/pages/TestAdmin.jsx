@@ -11,7 +11,7 @@ export const TestAdmin = () => {
     const { register, handleSubmit, setValue, reset, getValues, watch } =
         useForm({
             mode: "all",
-            defaultValues: { product_size: [] },
+            defaultValues: { product_size: [], is_visible: true },
         });
 
     const { data: existingProduct } = useQuery(["admin_product", id], () => {
@@ -118,7 +118,7 @@ export const TestAdmin = () => {
             <br />
             VISIBLE
             <br />
-            <input type="checkbox" {...register("is_visible")} />
+            <input type="checkbox" checked {...register("is_visible")} />
             <br />
             DETAILS
             <br />
