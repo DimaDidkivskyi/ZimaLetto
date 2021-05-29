@@ -34,7 +34,7 @@ productRouter.get("/:id", async (req, res) => {
             {
                 id: req.params.id,
             },
-            { relations: ["product_size"] }
+            { relations: ["category", "product_size"] }
         );
         return res.json(productList);
     } catch (error) {
@@ -70,11 +70,14 @@ productRouter.post("/", upload.single("image"), async (req, res) => {
     }
 });
 
-productRouter.post("/:id", async (req, res) => {
+productRouter.post("/:id", upload.single("image"), async (req, res) => {
     try {
         const body: IReqDataProduct = req.body;
+
         const productRepository = req.db.getRepository(Product);
-        const sizeRepository = req.db.getRepository(SizeOptions);
+
+        // const sizeRepository = req.db.getRepository(SizeOptions);
+
         const product = await productRepository.findOne(
             { id: req.params.id },
             { relations: ["category", "product_size"] }
@@ -82,18 +85,40 @@ productRouter.post("/:id", async (req, res) => {
         if (!product) {
             throw new Error(`Product not found ${req.params.id}`);
         }
-        const productsSizes = await sizeRepository.find({
-            where: body.product_size.map((size) => {
-                return { id: size };
-            }),
-        });
-        await productRepository
-            .createQueryBuilder()
-            .relation(Product, "product_size")
-            .of(product)
-            .addAndRemove(productsSizes, product.product_size);
-        delete req.body.product_size;
-        await productRepository.update({ id: req.params.id }, req.body);
+
+        const productKeys: Array<keyof Omit<Product, "id">> = [
+            "category",
+            "description",
+            "details",
+            "is_visible",
+            "name",
+            "price",
+            "product_size",
+        ];
+
+        // const productsSizes = await sizeRepository.find({
+        //     where: body.product_size.map((size) => {
+        //         return { id: size };
+        //     }),
+        // });
+
+        for (const key of productKeys) {
+            //@ts-ignore
+            product[key] = body[key];
+        }
+
+        if (!req.file) {
+            product.image = await exportFile(req.file);
+        }
+
+        // await productRepository
+        //     .createQueryBuilder()
+        //     .relation(Product, "product_size")
+        //     .of(product)
+        //     .addAndRemove(productsSizes, product.product_size);
+        // delete req.body.product_size;
+
+        await productRepository.save(product);
 
         return res.json({ ok: true, message: "Update is done" });
     } catch (error) {
