@@ -76,7 +76,7 @@ productRouter.post("/:id", upload.single("image"), async (req, res) => {
 
         const productRepository = req.db.getRepository(Product);
 
-        // const sizeRepository = req.db.getRepository(SizeOptions);
+        const sizeRepository = req.db.getRepository(SizeOptions);
 
         const product = await productRepository.findOne(
             { id: req.params.id },
@@ -93,21 +93,22 @@ productRouter.post("/:id", upload.single("image"), async (req, res) => {
             "is_visible",
             "name",
             "price",
-            "product_size",
         ];
 
-        // const productsSizes = await sizeRepository.find({
-        //     where: body.product_size.map((size) => {
-        //         return { id: size };
-        //     }),
-        // });
+        const productsSizes = await sizeRepository.find({
+            where: body.product_size.map((size) => {
+                return { id: size };
+            }),
+        });
 
         for (const key of productKeys) {
             //@ts-ignore
             product[key] = body[key];
         }
 
-        if (!req.file) {
+        product.product_size = productsSizes;
+
+        if (req.file) {
             product.image = await exportFile(req.file);
         }
 
