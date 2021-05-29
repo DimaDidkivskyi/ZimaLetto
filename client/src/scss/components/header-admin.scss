@@ -1,0 +1,14 @@
+@import "./variables.scss";
+
+.header-admin {
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        li {
+            padding: 30px 10px;
+            list-style-type: none;
+        }
+    }
+}

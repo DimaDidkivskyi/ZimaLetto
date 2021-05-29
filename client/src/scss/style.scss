@@ -60,7 +60,5 @@ body {
 @import "./components/login.scss";
 
 /* Admin panel */
-// @import "~mdb-ui-kit/css/mdb.min.css";
-// @import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-// @import "./components/admin.scss";
 @import "./components/product-list.scss";
+@import "./components/header-admin.scss";
