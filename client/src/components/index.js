@@ -1,6 +1,6 @@
 export { Button } from "./Button";
 export { CartItem } from "./CartItem";
-export { Categories } from "./Categories";
+export { Categories } from "./Categories/Categories";
 export { ContactsAboutUs } from "./ContactsAboutUs";
 export { ContactsCart } from "./ContactsCart";
 export { Footer } from "./Footer";

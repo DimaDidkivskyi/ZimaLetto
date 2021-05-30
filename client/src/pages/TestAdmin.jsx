@@ -57,6 +57,10 @@ export const TestAdmin = () => {
         axios.post(`${config.SERVER_URL}/product/${id ? id : ""}`, formData);
     };
 
+    const onDelete = () => {
+        id && axios.delete(`${config.SERVER_URL}/product/${id}`);
+    };
+
     const { data: categoryData } = useQuery("categories", () =>
         axios.get(`${config.SERVER_URL}/category`)
     );
@@ -89,64 +93,70 @@ export const TestAdmin = () => {
     );
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            name
-            <br />
-            <input type="text" {...register("name")} />
-            <br />
-            $ <input type="text" {...register("price")} />
-            <br />
-            <input type="file" {...register("image")} />
-            <br />
-            <input type="text" {...register("description")} />
-            <br />
-            <br />
-            CATEGORY
-            <br />
-            <Select
-                value={
-                    categoryOptions &&
-                    categoryOptions.find(
-                        (category) => category.value === getValues().category
-                    )
-                }
-                onChange={(data) => {
-                    setValue("category", data.value);
-                }}
-                options={categoryOptions}
-            />
-            <br />
-            VISIBLE
-            <br />
-            <input type="checkbox" checked {...register("is_visible")} />
-            <br />
-            DETAILS
-            <br />
-            <input type="text" {...register("details")} />
-            <br />
-            SIZE
-            <br />
-            <Select
-                value={
-                    sizeOptions &&
-                    sizeOptions.filter(
-                        (size) =>
-                            getValues().product_size &&
-                            getValues().product_size.includes(size.value)
-                    )
-                }
-                onChange={(data) => {
-                    setValue(
-                        "product_size",
-                        data.map((item) => item.value)
-                    );
-                }}
-                isMulti
-                options={sizeOptions}
-            />
-            <br />
-            SUBMIT
-            <input type="submit" />
-        </form>
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                name
+                <br />
+                <input type="text" {...register("name")} />
+                <br />
+                $ <input type="text" {...register("price")} />
+                <br />
+                <input type="file" {...register("image")} />
+                <br />
+                <input type="text" {...register("description")} />
+                <br />
+                <br />
+                CATEGORY
+                <br />
+                <Select
+                    value={
+                        categoryOptions &&
+                        categoryOptions.find(
+                            (category) =>
+                                category.value === getValues().category
+                        )
+                    }
+                    onChange={(data) => {
+                        setValue("category", data.value);
+                    }}
+                    options={categoryOptions}
+                />
+                <br />
+                VISIBLE
+                <br />
+                <input type="checkbox" checked {...register("is_visible")} />
+                <br />
+                DETAILS
+                <br />
+                <input type="text" {...register("details")} />
+                <br />
+                SIZE
+                <br />
+                <Select
+                    value={
+                        sizeOptions &&
+                        sizeOptions.filter(
+                            (size) =>
+                                getValues().product_size &&
+                                getValues().product_size.includes(size.value)
+                        )
+                    }
+                    onChange={(data) => {
+                        setValue(
+                            "product_size",
+                            data.map((item) => item.value)
+                        );
+                    }}
+                    isMulti
+                    options={sizeOptions}
+                />
+                <br />
+                SUBMIT
+                <input type="submit" />
+                <br />
+            </form>
+            DELETE
+            <button onClick={onDelete}>delete</button>
+        </div>
     );
 };

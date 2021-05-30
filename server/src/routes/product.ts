@@ -13,9 +13,14 @@ const productPerPage = 9;
 productRouter.get("/", async (req, res) => {
     try {
         const page = parseInt(req.query.page as string) || 1;
+        const categoryId = req.query.category;
         const productRepository = req.db.getRepository(Product);
-        // const numOfProduct = await productRepository.findAndCount()
+
         const productList = await productRepository.findAndCount({
+            where: {
+                ...(categoryId && { category: categoryId }),
+                is_visible: true,
+            },
             relations: ["category", "product_size"],
             skip: productPerPage * (page - 1),
             take: productPerPage,
