@@ -1,6 +1,6 @@
 import React from "react";
 import { useMemo, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useQuery, useQueryClient } from "react-query";
 
 import { fetchProducts } from "./api";
@@ -9,11 +9,13 @@ import { Pagination } from "../Pagination";
 
 export const Products = () => {
     const queryClient = useQueryClient();
+    let { search } = useLocation();
+    const category = new URLSearchParams(search).get("category");
     const [page, setPage] = React.useState(1);
 
     const { data, isPreviousData, isLoading } = useQuery(
-        ["products", page],
-        () => fetchProducts(page),
+        ["products", page, category],
+        () => fetchProducts(page, category),
         {
             keepPreviousData: true,
             staleTime: 5000,
@@ -23,10 +25,10 @@ export const Products = () => {
     React.useEffect(() => {
         if (Math.ceil(data?.productCount / productsPerPage) < page + 1) {
             queryClient.prefetchQuery(["products", page + 1], () =>
-                fetchProducts(page + 1)
+                fetchProducts(page + 1, category)
             );
         }
-    }, [data, page, queryClient]);
+    }, [data, page, queryClient, category]);
 
     const refContainer = useRef(null);
     React.useEffect(() => {

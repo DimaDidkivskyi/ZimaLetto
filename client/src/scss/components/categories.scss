@@ -3,30 +3,20 @@
 .categories {
     padding: 20px 0;
 
-    &__content {
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    &__item {
+        button {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 28px;
+            color: $black;
+            text-decoration: none;
 
-            li {
-                list-style-type: none;
-
-                a {
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 25px;
-                    line-height: 28px;
-                    color: $black;
-                    text-decoration: none;
-
-                    &.active {
-                        background: $light-black;
-                        border-radius: 25px;
-                        padding: 10px 30px 10px 30px;
-                        color: $white;
-                    }
-                }
+            &.active {
+                background: $light-black;
+                border-radius: 25px;
+                padding: 10px 30px 10px 30px;
+                color: $white;
             }
         }
     }
