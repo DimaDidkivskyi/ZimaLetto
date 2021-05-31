@@ -1,10 +1,13 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { fetchCategories } from "../Categories/api";
 
 export const Categories = () => {
+    let { search } = useLocation();
+    const activeCategory = new URLSearchParams(search).get("category");
+
     const { data } = useQuery(["category"], () => {
         return fetchCategories();
     });
@@ -22,19 +25,36 @@ export const Categories = () => {
     return (
         <section className="categories">
             <div className="container">
-                {data &&
-                    data.data.map((category) => {
-                        return (
-                            <div className="categories__item" key={category.id}>
-                                <button
-                                    className="active"
-                                    onClick={() => handleClick(category)}
+                <div className="categories__inner">
+                    <div className="categories__item">
+                        <button
+                            className={!activeCategory ? "active" : ""}
+                            onClick={() => handleClick({ id: "" })}
+                        >
+                            All
+                        </button>
+                    </div>
+                    {data &&
+                        data.data.map((category) => {
+                            return (
+                                <div
+                                    className="categories__item"
+                                    key={category.id}
                                 >
-                                    {category.name}
-                                </button>
-                            </div>
-                        );
-                    })}
+                                    <button
+                                        className={
+                                            activeCategory === category.id
+                                                ? "active"
+                                                : ""
+                                        }
+                                        onClick={() => handleClick(category)}
+                                    >
+                                        {category.name}
+                                    </button>
+                                </div>
+                            );
+                        })}
+                </div>
             </div>
         </section>
     );

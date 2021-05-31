@@ -3,21 +3,35 @@
 .categories {
     padding: 20px 0;
 
-    &__item {
-        button {
-            font-style: normal;
-            font-weight: normal;
-            font-size: 25px;
-            line-height: 28px;
-            color: $black;
-            text-decoration: none;
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-            &.active {
-                background: $light-black;
-                border-radius: 25px;
-                padding: 10px 30px 10px 30px;
-                color: $white;
-            }
+    button {
+        cursor: pointer;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 28px;
+        color: $black;
+        text-decoration: none;
+        border: none;
+        background: $gray;
+        padding: 12px 25px;
+        border-radius: 30px;
+        transition: $duration linear;
+
+        &:hover {
+            background: #cccccc;
+        }
+
+        &.active {
+            background: $light-black;
+            border-radius: 30px;
+            padding: 12px 30px;
+            color: $white;
         }
     }
 }

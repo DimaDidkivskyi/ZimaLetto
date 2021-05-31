@@ -10,17 +10,6 @@ import {
 import ImageSlider from "../components/Slider/ImageSlider";
 
 export const Home = () => {
-    // const categoryNames = [
-    //     "Футболки",
-    //     "Шорты",
-    //     "Кроссовки",
-    //     "Ветровки",
-    //     "Поло",
-    //     "Джинсы",
-    //     "Худи",
-    //     "Бейсболки",
-    // ];
-
     return (
         <div>
             <Header />
