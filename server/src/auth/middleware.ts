@@ -16,3 +16,19 @@ export const authMiddleware = (
     }
     next();
 };
+
+export const authAdminMiddleware = (
+    req: Request,
+    _res: Response,
+    next: () => void
+) => {
+    try {
+        const adminToken = req.headers.authorization?.split(" ")[1];
+        if (adminToken && verify(adminToken, process.env.JWT_SECRET || "")) {
+            req.user = (decode(adminToken) as { id: string }) || undefined;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    next();
+};
