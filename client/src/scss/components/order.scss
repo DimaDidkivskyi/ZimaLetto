@@ -1,0 +1,31 @@
+@import "./variables.scss";
+.order {
+    &__inner {
+        padding: 60px 0;
+    }
+
+    &__item {
+        margin: 25px 0;
+
+        input {
+            width: 451px;
+            height: 65.44px;
+            background: #fcfcfc;
+            border: 1.1194px solid #ebebeb;
+            box-sizing: border-box;
+            border-radius: 7.11356px;
+            padding-left: 10px;
+        }
+    }
+
+    .order-btn {
+        font-size: 16px;
+        font-weight: 600;
+        width: 210px;
+        padding: 16px;
+
+        &:last-child {
+            margin-left: 25px;
+        }
+    }
+}
