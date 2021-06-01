@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import { useSelector } from "react-redux";
 
 import {
+    Admin,
     Cart,
     ConfidentialityPolicy,
     Contacts,
@@ -14,13 +15,13 @@ import {
     EditOrders,
     EditUsers,
     Home,
+    OrderRegistration,
     Payment,
     Product,
     Profile,
     Shipping,
     ShippingMethods,
     TermsConditions,
-    TestAdmin,
 } from "./pages";
 
 function App() {
@@ -62,6 +63,8 @@ function App() {
     return (
         <div className="wrapper">
             <div className="content">
+                <Route path="/admin" component={Admin} exact />
+                <Route path="/admin/:id" component={Admin} exact />
                 <Route path="/cart" component={Cart} exact />
                 <Route
                     path="/confidentiality-policy"
@@ -73,6 +76,11 @@ function App() {
                 <Route path="/edit-orders" component={EditOrders} exact />
                 <Route path="/edit-users" component={EditUsers} exact />
                 <Route path="/" component={Home} exact />
+                <Route
+                    path="/order-registration"
+                    component={OrderRegistration}
+                    exact
+                />
                 <Route path="/payment" component={Payment} exact />
                 <Route path="/product/:id" component={Product} exact />
                 <Route path="/profile" component={Profile} exact />
@@ -87,8 +95,6 @@ function App() {
                     component={TermsConditions}
                     exact
                 />
-                <Route path="/test-admin" component={TestAdmin} exact />
-                <Route path="/test-admin/:id" component={TestAdmin} exact />
             </div>
         </div>
     );
