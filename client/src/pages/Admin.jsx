@@ -4,9 +4,10 @@ import axios from "axios";
 import Select from "react-select";
 import { useQuery } from "react-query";
 import { useForm } from "react-hook-form";
+
 import { config } from "../utils/config";
 
-export const TestAdmin = () => {
+export const Admin = () => {
     const { id } = useParams();
     const { register, handleSubmit, setValue, reset, getValues, watch } =
         useForm({

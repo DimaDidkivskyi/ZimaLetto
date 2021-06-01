@@ -195,7 +195,7 @@ export const Cart = () => {
                     ) : (
                         <div className="cart cart--empty">
                             <h2>
-                                Cart is empty <icon>😕</icon>
+                                Cart is empty <i>😕</i>
                             </h2>
                             <p>
                                 Most likely, you haven't ordered anything yet.
