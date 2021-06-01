@@ -19,7 +19,7 @@ export default class Product {
     name: string;
 
     @Column({ type: "money", nullable: false })
-    price: number;
+    price: string;
 
     @Column({ type: "varchar", nullable: false })
     image: string;

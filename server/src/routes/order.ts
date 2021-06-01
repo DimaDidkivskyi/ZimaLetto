@@ -42,14 +42,34 @@ orderRouter.post("/", async (req, res) => {
         const orderRepository = req.db.getRepository(Order);
         const productRepository = req.db.getRepository(Product);
         const orderProducts = await productRepository.find({
-            where: body.products.map((product) => {
-                return { id: product };
+            where: body.products.map(({ id }) => {
+                return { id };
             }),
         });
+        const mappedProducts = orderProducts.map((product) => {
+            const productQuantity = body.products.find(
+                (productWithQuantity) => product.id === productWithQuantity.id
+            );
+            return {
+                id: product.id,
+                quantity: productQuantity?.quantity,
+                product_price: product.price,
+            };
+        });
+
+        let totalSum = 0;
+
+        for (let i = 0; i < mappedProducts.length; i++) {
+            totalSum +=
+                mappedProducts[i].quantity! *
+                parseFloat(mappedProducts[i].product_price.replace("$", ""));
+        }
         const order = orderRepository.create({
             ...body,
             userId: req.user?.id,
             products: orderProducts,
+            totalSum,
+            productJSON: JSON.stringify(mappedProducts),
         });
         await orderRepository.save(order);
         return res.json({ ok: true, message: "Order created" });
