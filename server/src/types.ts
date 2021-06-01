@@ -10,7 +10,7 @@ declare global {
 
 export interface IReqDataProduct {
     name: string;
-    price: number;
+    price: string;
     image: string;
     description: string;
     details: string;
@@ -25,10 +25,9 @@ export interface IReqDataUserRegister {
 }
 
 export interface IReqDataOrder {
-    order_number: number;
     client_fname: string;
     client_lname: string;
     client_phone: string;
+    client_address: string;
     products: { id: string; quantity: number }[];
-    products_json: string;
 }

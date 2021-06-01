@@ -28,6 +28,12 @@ export default class Order {
     @Column({ type: "uuid", nullable: true })
     userId: string;
 
+    @Column({ type: "json", nullable: true })
+    productJSON: string;
+
+    @Column({ type: "money", nullable: true })
+    totalSum: number;
+
     @ManyToMany(() => Product)
     @JoinTable()
     products: Product[];
