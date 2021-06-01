@@ -183,12 +183,17 @@ export const Cart = () => {
                                             <span>Come back</span>
                                         </Link>
                                     </a>
-                                    <Button
-                                        onClick={onClickOrder}
-                                        className="pay-btn"
+                                    <Link
+                                        to="/order-registration"
+                                        className="react-router__link"
                                     >
-                                        <span>Pay now</span>
-                                    </Button>
+                                        <Button
+                                            onClick={onClickOrder}
+                                            className="pay-btn"
+                                        >
+                                            <span>Pay now</span>
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
