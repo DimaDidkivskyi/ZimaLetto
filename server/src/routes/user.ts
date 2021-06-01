@@ -1,5 +1,5 @@
 import { Router } from "express";
-import User from "../entity/User";
+import User, { UserRole } from "../entity/User";
 import Crypto from "crypto";
 import { IReqDataUserRegister } from "../types";
 import { createAccessToken, createRefreshToken } from "../auth/createToken";
@@ -41,6 +41,9 @@ userRouter.post("/login", async (req, res) => {
         const result = sha.digest("hex");
         if (result !== user.password) {
             return res.json({ ok: true, message: "Incorrect password" });
+        }
+
+        if (Object.values(UserRole).includes(user.user_role)) {
         }
         createRefreshToken({ id: user.id }, res);
         return res.json({
