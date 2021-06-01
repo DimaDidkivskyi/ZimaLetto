@@ -2,12 +2,11 @@ import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-import { Button, Header, Footer } from "../components";
+import { Header, Footer } from "../components";
 import { config } from "../utils/config";
 
-export const OrderRegistration = () => {
+export const OrderRegistration = ({ orderProducts }) => {
     const { items } = useSelector(({ cart }) => cart);
 
     const {
@@ -16,6 +15,7 @@ export const OrderRegistration = () => {
         formState: { errors },
     } = useForm({
         mode: "all",
+        defaultValues: { productList: [] },
     });
 
     const onSubmit = (data) => {
@@ -28,64 +28,72 @@ export const OrderRegistration = () => {
         }
 
         axios.post(`${config.SERVER_URL}/order/`, { ...data, products });
-        console.log({ ...data, products });
     };
 
     return (
-        <div className="order">
+        <div>
             {" "}
             <Header />
             <div className="container">
-                <div className="order__inner">
-                    <center>
-                        <h1>Fill out the form bellow</h1>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="order__item">
-                                <input
-                                    defaultValue=""
-                                    {...register("client_fname")}
-                                    placeholder="Enter your Firstname"
-                                />
-                            </div>
-                            <div className="order__item">
-                                <input
-                                    {...register("client_lname", {
-                                        required: true,
-                                    })}
-                                    placeholder="Enter your Last name"
-                                />
-                            </div>
-                            <div className="order__item">
-                                <input
-                                    {...register("client_phone", {
-                                        required: true,
-                                    })}
-                                    placeholder="Enter your phone"
-                                />
-                            </div>
-                            <div className="order__item">
-                                <input
-                                    {...register("client_address", {
-                                        required: true,
-                                    })}
-                                    placeholder="Enter your address"
-                                />
-                            </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input
+                        defaultValue=""
+                        {...register("client_fname")}
+                        placeholder="Enter your Firstname"
+                    />
+                    <br />
+                    <input
+                        {...register("client_lname", { required: true })}
+                        placeholder="Enter your Lastname"
+                    />
+                    <br />
+                    <input
+                        {...register("client_phone", { required: true })}
+                        placeholder="Enter your phone"
+                    />
+                    <br />
+                    <input
+                        {...register("client_address", { required: true })}
+                        placeholder="Enter your address"
+                    />
 
-                            {errors.exampleRequired && (
-                                <span>This field is required</span>
-                            )}
+                    {errors.exampleRequired && (
+                        <span>This field is required</span>
+                    )}
 
-                            <br />
-                            <Link to="cart" className="react-router__link">
-                                <Button className="order-btn">Comeback</Button>
-                            </Link>
-                            <Link to="cart" className="react-router__link">
-                                <Button className="order-btn">Checkout</Button>
-                            </Link>
-                        </form>
-                    </center>
-                </div>
+                    <br />
+                    <button onClick={onSubmit}>Submit</button>
+                </form>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
             <Footer />
         </div>
