@@ -77,12 +77,10 @@ export const OrderRegistration = () => {
                             )}
 
                             <br />
-                            <Link to="cart" className="react-router__link">
+                            <Link to="/cart" className="react-router__link">
                                 <Button className="order-btn">Comeback</Button>
                             </Link>
-                            <Link to="cart" className="react-router__link">
-                                <Button className="order-btn">Checkout</Button>
-                            </Link>
+                            <Button className="order-btn">Checkout</Button>
                         </form>
                     </center>
                 </div>
