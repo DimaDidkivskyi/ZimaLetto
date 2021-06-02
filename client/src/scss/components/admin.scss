@@ -1,0 +1,80 @@
+@import "./variables.scss";
+
+.admin {
+    padding: 50px 0;
+
+    h1 {
+        margin-bottom: 20px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 39px;
+        letter-spacing: 0.01em;
+        color: $black;
+    }
+
+    &__item {
+        input[type="text"] {
+            display: block;
+            margin: 25px 0;
+            width: 451px;
+            height: 65.44px;
+            background: #fcfcfc;
+            border: 1.1194px solid #ebebeb;
+            box-sizing: border-box;
+            border-radius: 7.11356px;
+            padding-left: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+            color: $white;
+            width: 150px;
+            height: 40px;
+            background: $orange;
+            font-size: 20px;
+            border-radius: 10px;
+            border: none;
+            margin: 20px 0;
+            transition: 0.2s linear;
+
+            &:hover {
+                background: #f24701;
+            }
+        }
+
+        label {
+            cursor: pointer;
+            color: $white;
+            width: 250px;
+            height: 60px;
+            background: $orange;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: 0.2s linear;
+
+            &:hover {
+                background: $light-black;
+            }
+        }
+
+        .admin-select {
+            margin-top: 30px;
+        }
+    }
+
+    &__btn {
+        width: 150px;
+        height: 40px;
+        background: $orange;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+}
