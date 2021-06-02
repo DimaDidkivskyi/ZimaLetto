@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import { useQuery } from "react-query";
 import { useForm } from "react-hook-form";
 
 import { config } from "../utils/config";
+import { Button } from "../components";
 
 export const Admin = () => {
     const { id } = useParams();
@@ -94,70 +95,99 @@ export const Admin = () => {
     );
 
     return (
-        <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                name
-                <br />
-                <input type="text" {...register("name")} />
-                <br />
-                $ <input type="text" {...register("price")} />
-                <br />
-                <input type="file" {...register("image")} />
-                <br />
-                <input type="text" {...register("description")} />
-                <br />
-                <br />
-                CATEGORY
-                <br />
-                <Select
-                    value={
-                        categoryOptions &&
-                        categoryOptions.find(
-                            (category) =>
-                                category.value === getValues().category
-                        )
-                    }
-                    onChange={(data) => {
-                        setValue("category", data.value);
-                    }}
-                    options={categoryOptions}
-                />
-                <br />
-                VISIBLE
-                <br />
-                <input type="checkbox" checked {...register("is_visible")} />
-                <br />
-                DETAILS
-                <br />
-                <input type="text" {...register("details")} />
-                <br />
-                SIZE
-                <br />
-                <Select
-                    value={
-                        sizeOptions &&
-                        sizeOptions.filter(
-                            (size) =>
-                                getValues().product_size &&
-                                getValues().product_size.includes(size.value)
-                        )
-                    }
-                    onChange={(data) => {
-                        setValue(
-                            "product_size",
-                            data.map((item) => item.value)
-                        );
-                    }}
-                    isMulti
-                    options={sizeOptions}
-                />
-                <br />
-                SUBMIT
-                <input type="submit" />
-                <br />
-            </form>
-            DELETE
-            <button onClick={onDelete}>delete</button>
-        </div>
+        <section className="admin">
+            <div className="container">
+                <center>
+                    <h1>Add/Update/Delete Product</h1>
+                    <div className="admin__item">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input
+                                type="text"
+                                {...register("name")}
+                                placeholder="Enter product name:"
+                            />
+                            <input
+                                type="text"
+                                {...register("price")}
+                                placeholder="Enter product price:"
+                            />
+                            <input
+                                type="text"
+                                {...register("description")}
+                                placeholder="Enter product description:"
+                            />
+                            <input
+                                type="file"
+                                id="file"
+                                accept="image/*"
+                                {...register("image")}
+                                placeholder="Enter product image:"
+                            />
+                            <input
+                                type="text"
+                                {...register("details")}
+                                placeholder="Enter product details:"
+                            />
+                            <label htmlFor="file">Choose a photo</label>
+                            <br />
+                            <Select
+                                className="admin-select"
+                                value={
+                                    categoryOptions &&
+                                    categoryOptions.find(
+                                        (category) =>
+                                            category.value ===
+                                            getValues().category
+                                    )
+                                }
+                                onChange={(data) => {
+                                    setValue("category", data.value);
+                                }}
+                                options={categoryOptions}
+                                placeholder="Choose category:"
+                            />
+                            <br />
+                            <br />
+                            <Select
+                                value={
+                                    sizeOptions &&
+                                    sizeOptions.filter(
+                                        (size) =>
+                                            getValues().product_size &&
+                                            getValues().product_size.includes(
+                                                size.value
+                                            )
+                                    )
+                                }
+                                onChange={(data) => {
+                                    setValue(
+                                        "product_size",
+                                        data.map((item) => item.value)
+                                    );
+                                }}
+                                isMulti
+                                options={sizeOptions}
+                                placeholder="Choose size:"
+                            />
+                            <br />
+                            VISIBLE/UNVISIBLE {""}
+                            <input
+                                type="checkbox"
+                                checked
+                                {...register("is_visible")}
+                            />
+                            <br />
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </div>
+                    <div className="admin__item">
+                        <Button onClick={onDelete} className="admin__btn">
+                            Delete
+                        </Button>
+                    </div>
+                </center>
+            </div>
+            <Link to="/">Main page</Link>
+        </section>
     );
 };
