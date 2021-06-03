@@ -33,7 +33,7 @@ openConnection().then(async (connection) => {
     app.use("/api/order", orderRouter);
 
     app.listen(port, () => {
-        console.log("hello");
+        console.log(`Server running on http://localhost:${port}`);
     });
 });
 
