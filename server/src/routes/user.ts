@@ -63,31 +63,36 @@ userRouter.get("/logout", async (_req, res) => {
 
 // REGISTRATION
 userRouter.post("/registration", async (req, res) => {
+    // POST запит на реєстрацію користувача
     try {
         const body: IReqDataUserRegister = req.body;
 
-        const { error } = emailSchema.validate(body);
+        const { error } = emailSchema.validate(body); // Перевірка на правильність написання електроної пошти
 
         if (error) {
-            return res.json({ ok: false, error });
+            // Умова що виконується якщо виникає помилка
+            return res.json({ ok: false, error }); // Повернення повідомлення з помилкою
         }
 
-        const userRepository = req.db.getRepository(User);
+        const userRepository = req.db.getRepository(User); // Отриманння доступу до репозиторії користувачів
 
-        const sha = Crypto.createHash("sha512").update(String(body.password));
+        const sha = Crypto.createHash("sha512").update(String(body.password)); // Кодування паролю
         const result = sha.digest("hex");
 
-        const user = userRepository.create({ ...body, password: result });
-        await userRepository.save(user);
-        createRefreshToken({ id: user.id }, res);
+        const user = userRepository.create({ ...body, password: result }); // Створення користувача
+        await userRepository.save(user); // Зберігання користувача
+        createRefreshToken({ id: user.id }, res); // Створення cookie користувача
         return res.json({
+            // Повернення повідомлення про успішну реєстрацію
             ok: true,
             message: "User created",
             token: createAccessToken({ id: user.id }),
         });
     } catch (error) {
+        // Частина функції що виконується якщо виникає помилка
         if (error.code === "23505") {
-            return res.json({ ok: false, error });
+            // Якщо код помилки 23505
+            return res.json({ ok: false, error }); // Повертається повідомлення про помилку
         }
 
         return res.json({ ok: false, error });
