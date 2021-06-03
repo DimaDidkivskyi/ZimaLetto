@@ -18,6 +18,7 @@ import {
     OrderRegistration,
     Payment,
     Product,
+    ProductsList,
     Profile,
     Shipping,
     ShippingMethods,
@@ -83,6 +84,7 @@ function App() {
                 />
                 <Route path="/payment" component={Payment} exact />
                 <Route path="/product/:id" component={Product} exact />
+                <Route path="/products-list" component={ProductsList} exact />
                 <Route path="/profile" component={Profile} exact />
                 <Route path="/delivery" component={Shipping} exact />
                 <Route

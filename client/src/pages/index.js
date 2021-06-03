@@ -5,6 +5,7 @@ export { Contacts } from "./Contacts";
 export { Home } from "./Home";
 export { Payment } from "./Payment";
 export { Product } from "./Product";
+export { ProductsList } from "./ProductsList";
 export { EditProduct } from "./EditProduct";
 export { EditOrders } from "./EditOrders";
 export { EditUsers } from "./EditUsers";

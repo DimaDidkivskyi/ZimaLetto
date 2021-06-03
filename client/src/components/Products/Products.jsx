@@ -1,18 +1,19 @@
 import React from "react";
 import { useMemo, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query"; // Імпорт сторонніх бібліотек
 
-import { fetchProducts } from "./api";
-import { productsPerPage } from "../../utils/config";
-import { Pagination } from "../Pagination";
+import { fetchProducts } from "./api"; // Імпорт асинхронної функції
+import { productsPerPage } from "../../utils/config"; // Імпорт функції, яка відповідає за кількість продуктів на сторінці
+import { Pagination } from "../Pagination"; // Імпорт компоненту "Пагінації"
 
 export const Products = () => {
-    const queryClient = useQueryClient();
-    let { search } = useLocation();
-    const category = new URLSearchParams(search).get("category");
-    const [page, setPage] = React.useState(1);
+    const queryClient = useQueryClient(); // useQueryClient повертає теперешній екземпляр QueryClient
+    let { search } = useLocation(); // Хук useLocation повертає об'єкт місцезнаходження, є собою теперешній URL
+    const category = new URLSearchParams(search).get("category"); // Інтерфейс URLSearchParams визначає службові методи для роботою з строками запиту URL
+    const [page, setPage] = React.useState(1); // Хук useState надає функціональним компонентам доступ до стану React.
 
+    // Функція для кешингу стану сервера
     const { data, isPreviousData, isLoading } = useQuery(
         ["products", page, category],
         () => fetchProducts(page, category),
@@ -22,6 +23,7 @@ export const Products = () => {
         }
     );
 
+    // Перевірка для відображання кількості продуктів на сторінці
     React.useEffect(() => {
         if (Math.ceil(data?.productCount / productsPerPage) < page + 1) {
             queryClient.prefetchQuery(["products", page + 1], () =>
@@ -30,6 +32,7 @@ export const Products = () => {
         }
     }, [data, page, queryClient, category]);
 
+    // Перевірка, де по кліку на компонент пагінації за допомогою функціїї scrollTo() повертало на сторінку з певними координатами
     const refContainer = useRef(null);
     React.useEffect(() => {
         if (refContainer.current) {
@@ -41,6 +44,8 @@ export const Products = () => {
         }
     }, [page]);
 
+    /* Обертаємо компонент ProductList у хук useMemo, далі за допомогою перевірки if та
+    методу масиву map() повертаємо усі продукти з бази даних*/
     const ProductList = useMemo(() => {
         if (data) {
             return data.productList.map((product) => (
@@ -67,6 +72,7 @@ export const Products = () => {
         }
     }, [data]);
 
+    // Повертаємо секцію товарів та робимо перевірку чи завантажились товари на сторінці. Далі вставляємо компонент пагінації
     return (
         <section className="products">
             <div className="container" ref={refContainer}>
