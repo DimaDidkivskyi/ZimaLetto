@@ -14,10 +14,7 @@ export const Form = ({ showModal, setShowModal }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const mutation = useMutation(
         (credentials) =>
-            axios.post(
-                `${config.SERVER_URL}/api/user/registration`,
-                credentials
-            ),
+            axios.post(`${config.SERVER_URL}/user/registration`, credentials),
         {
             onSuccess: ({ data }) => {
                 localStorage.setItem("token", data.token);
@@ -26,7 +23,7 @@ export const Form = ({ showModal, setShowModal }) => {
     );
 
     const { refetch } = useQuery("me", () =>
-        axios.get(`${config.SERVER_URL}/api/user/me`)
+        axios.get(`${config.SERVER_URL}/user/me`)
     );
 
     const submitForm = useCallback(

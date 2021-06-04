@@ -11,7 +11,7 @@ export const Profile = () => {
     const mutation = useMutation(async () => {
         queryClient.removeQueries("me");
         localStorage.setItem("token", "");
-        return axios.get(`${config.SERVER_URL}/api/user/logout`);
+        return axios.get(`${config.SERVER_URL}/user/logout`);
     });
 
     return (

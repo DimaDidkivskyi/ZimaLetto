@@ -13,7 +13,7 @@ export const Product = () => {
 
     useEffect(() => {
         const fetchOneProduct = async () => {
-            const resp = await fetch(`${config.SERVER_URL}/api/product/${id}`);
+            const resp = await fetch(`${config.SERVER_URL}/product/${id}`);
             const data = await resp.json();
             setProduct(data);
         };

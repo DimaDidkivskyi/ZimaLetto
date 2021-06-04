@@ -18,7 +18,7 @@ export const Header = () => {
     };
 
     const { data } = useQuery("me", () =>
-        axios.get(`${config.SERVER_URL}/api/user/me`)
+        axios.get(`${config.SERVER_URL}/user/me`)
     );
     return (
         <div className="header">
