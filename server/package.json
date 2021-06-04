@@ -7,7 +7,7 @@
         "exportDb": "ts-node-dev --max-old-space-size=8192 --transpile-only --skip-project scripts/export.ts",
         "importDb": "ts-node-dev --max-old-space-size=8192 --transpile-only --skip-project scripts/import.ts",
         "start": "node dist/index.js",
-        "build": "tsc --skipLibCheck",
+        "build": "tsc --noImplicitAny false",
         "watch": "tsc -w",
         "dev": "nodemon dist/index.js"
     },

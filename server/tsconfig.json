@@ -4,6 +4,7 @@
         "module": "commonjs",
         "lib": ["es6", "es2017"],
         "skipLibCheck": true,
+        "checkJs": false,
         "sourceMap": true,
         "outDir": "./dist",
         "moduleResolution": "node",
