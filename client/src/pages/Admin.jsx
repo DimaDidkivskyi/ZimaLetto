@@ -123,7 +123,7 @@ export const Admin = () => {
                                 {...register("image")}
                                 placeholder="Enter product image:"
                             />
-                            <input
+                            <textarea
                                 type="text"
                                 {...register("details")}
                                 placeholder="Enter product details:"
