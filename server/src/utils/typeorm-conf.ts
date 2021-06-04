@@ -16,5 +16,6 @@ export const typeorm_conf = {
     password: process.env.DATABASE_PASSWORD || "",
     database: process.env.DATABASE_NAME || "",
     synchronize: true,
+    ssl: process.env.NODE_ENV === "production",
     entities: [Product, Category, SizeOptions, User, Order],
 } as Parameters<typeof createConnection>[0];
