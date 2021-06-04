@@ -11,7 +11,7 @@ export const ProductAbout = ({ description, details }) => {
                     <div class="product-about__info">
                         <div className="title">Details</div>
 
-                        <div className="content">
+                        <div className="details">
                             <p>{description}</p>
                             <br />
                             <p>{details}</p>
