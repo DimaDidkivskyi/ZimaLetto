@@ -6,6 +6,7 @@ import { useQuery, useMutation } from "react-query";
 
 import { FormSignup } from "./FormSignup";
 import { FormSuccess } from "./FormSuccess";
+import { config } from "../../utils/config";
 
 import Img2 from "../../assets/img/img-2.svg";
 
@@ -13,10 +14,7 @@ export const Form = ({ showModal, setShowModal }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const mutation = useMutation(
         (credentials) =>
-            axios.post(
-                "http://localhost:3000/api/user/registration",
-                credentials
-            ),
+            axios.post(`${config.SERVER_URL}/user/registration`, credentials),
         {
             onSuccess: ({ data }) => {
                 localStorage.setItem("token", data.token);
@@ -25,7 +23,7 @@ export const Form = ({ showModal, setShowModal }) => {
     );
 
     const { refetch } = useQuery("me", () =>
-        axios.get("http://localhost:3000/api/user/me")
+        axios.get(`${config.SERVER_URL}/user/me`)
     );
 
     const submitForm = useCallback(

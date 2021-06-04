@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Header, Footer, ProductInfo, ProductAbout } from "../components";
+import { config } from "../utils/config";
 
 export const Product = () => {
     let { id } = useParams();
@@ -12,7 +13,7 @@ export const Product = () => {
 
     useEffect(() => {
         const fetchOneProduct = async () => {
-            const resp = await fetch(`http://localhost:3000/api/product/${id}`);
+            const resp = await fetch(`${config.SERVER_URL}/product/${id}`);
             const data = await resp.json();
             setProduct(data);
         };

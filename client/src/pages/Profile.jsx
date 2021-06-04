@@ -5,12 +5,13 @@ import axios from "axios";
 import { queryClient } from "..";
 
 import { Header, Footer } from "../components";
+import { config } from "../utils/config";
 
 export const Profile = () => {
     const mutation = useMutation(async () => {
         queryClient.removeQueries("me");
         localStorage.setItem("token", "");
-        return axios.get("http://localhost:3000/api/user/logout");
+        return axios.get(`${config.SERVER_URL}/user/logout`);
     });
 
     return (

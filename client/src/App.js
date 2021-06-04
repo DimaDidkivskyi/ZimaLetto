@@ -24,6 +24,7 @@ import {
     ShippingMethods,
     TermsConditions,
 } from "./pages";
+import { config } from "./utils/config";
 
 function App() {
     const location = useLocation();
@@ -36,14 +37,14 @@ function App() {
         localStorage.setItem("cart", JSON.stringify(items));
     }, [items]);
 
-    axios.interceptors.request.use(async function (config) {
+    axios.interceptors.request.use(async function (axiosConfig) {
         let token = localStorage.getItem("token");
         if (token) {
             try {
                 const decoded = jwt_decode(token);
                 if (decoded.exp * 1000 <= Date.now()) {
                     const result = await fetch(
-                        "http://localhost:3000/api/user/refresh_token",
+                        `${config.SERVER_URL}/user/refresh_token`,
                         { method: "POST", credentials: "include", mode: "cors" }
                     );
                     const json = await result.json();
@@ -51,14 +52,14 @@ function App() {
                     localStorage.setItem("token", token);
                 }
 
-                config.headers.authorization = "Bearer " + token;
+                axiosConfig.headers.authorization = "Bearer " + token;
             } catch (e) {}
         }
 
-        config.headers.withCredentials = true;
-        config.headers.mode = "cors";
+        axiosConfig.headers.withCredentials = true;
+        axiosConfig.headers.mode = "cors";
 
-        return config;
+        return axiosConfig;
     });
 
     return (
