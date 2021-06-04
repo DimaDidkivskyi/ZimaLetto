@@ -10,13 +10,14 @@ import { authMiddleware } from "./auth/middleware";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { typeorm_conf } from "./utils/typeorm-conf";
+import path from "path";
 
 config();
 const port = process.env.PORT || 3000;
 
 openConnection().then(async (connection) => {
     const app = express();
-    app.use(express.static("public"));
+    app.use("/", express.static("public"));
     app.use(cors({ origin: [process.env.APP_URL || ""], credentials: true }));
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
@@ -31,6 +32,10 @@ openConnection().then(async (connection) => {
     app.use("/api/size", sizeRouter);
     app.use("/api/user", userRouter);
     app.use("/api/order", orderRouter);
+
+    app.use((_req, res) => {
+        res.sendFile(path.resolve(__dirname, "./../public/index.html"));
+    });
 
     app.listen(port, () => {
         console.log(`Server running on http://localhost:${port}`);
