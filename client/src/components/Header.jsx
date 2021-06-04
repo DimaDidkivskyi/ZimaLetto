@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 import { Form } from "./Login/Form";
+import { config } from "../utils/config";
 
 import headerLogo from "../assets/img/logo.svg";
 
@@ -17,7 +18,7 @@ export const Header = () => {
     };
 
     const { data } = useQuery("me", () =>
-        axios.get("http://localhost:3000/api/user/me")
+        axios.get(`${config.SERVER_URL}/api/user/me`)
     );
     return (
         <div className="header">
