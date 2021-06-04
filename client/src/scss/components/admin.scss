@@ -14,7 +14,8 @@
     }
 
     &__item {
-        input[type="text"] {
+        input[type="text"],
+        textarea {
             display: block;
             margin: 25px 0;
             width: 451px;
