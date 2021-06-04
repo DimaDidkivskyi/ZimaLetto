@@ -3,6 +3,7 @@ node_modules
 dist
 build
 .env
+.env.old
 JSONFolder
 .pnp
 .pnp.js
