@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 
-import { Form } from "./Login/Form";
+import { Form } from "./Registration/Form";
 import { config } from "../utils/config";
 
 import headerLogo from "../assets/img/logo.svg";
