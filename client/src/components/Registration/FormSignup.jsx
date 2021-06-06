@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useForm } from "./useForm";
 import { validateInfo } from "./validateInfo";
@@ -80,7 +81,10 @@ export const FormSignup = ({ submitForm }) => {
                     Sign up
                 </button>
                 <span className="form-input-login">
-                    Already have an account? Log in <a href="##">here</a>{" "}
+                    Already have an account? Log in{" "}
+                    <Link className="react-router__link" to="/profile">
+                        here
+                    </Link>{" "}
                 </span>
             </form>
         </div>
