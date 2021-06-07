@@ -6,7 +6,11 @@
     &__inner {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        margin: 0 5.3px;
     }
 
     button {
@@ -34,4 +38,27 @@
             color: $white;
         }
     }
+}
+
+@media (max-width: 1366px) {
+    .categories {
+    }
+}
+
+@media (max-width: 990px) {
+    .categories {
+        &__item {
+            margin: 0 9.5px;
+            padding-bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: 770px) {
+}
+
+@media (max-width: 575px) {
+}
+
+@media (max-width: 320px) {
 }

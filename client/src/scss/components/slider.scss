@@ -61,3 +61,32 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 1366px) {
+    .slider {
+        &__left-arrow {
+            left: 2%;
+        }
+
+        &__right-arrow {
+            right: 2%;
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .slider {
+        &__img {
+            height: 380px;
+        }
+    }
+}
+
+@media (max-width: 770px) {
+}
+
+@media (max-width: 575px) {
+}
+
+@media (max-width: 320px) {
+}
