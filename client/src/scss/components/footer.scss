@@ -21,7 +21,6 @@
     &__left {
         .phones {
             display: flex;
-            justify-content: space-between;
 
             .phone-item {
                 display: flex;
@@ -122,4 +121,41 @@
             margin-left: 33px;
         }
     }
+}
+
+@media (max-width: 1366px) {
+    .footer {
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 990px) {
+    .footer {
+        padding: 20px 0 20px 40px;
+
+        &__inner {
+            display: block;
+        }
+
+        &__center {
+            margin: 20px 0;
+
+            .social {
+                a {
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+}
+
+@media (max-width: 575px) {
+}
+
+@media (max-width: 320px) {
 }
