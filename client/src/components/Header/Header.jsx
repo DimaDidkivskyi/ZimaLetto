@@ -4,10 +4,11 @@ import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 
-import { Form } from "./Registration/Form";
-import { config } from "../utils/config";
+import { Navigation, MobileNavigation } from "../../components";
+import { Form } from "../Registration/Form";
+import { config } from "../../utils/config";
 
-import headerLogo from "../assets/img/logo.svg";
+import headerLogo from "../../assets/img/logo.svg";
 
 export const Header = () => {
     const [showModal, setShowModal] = useState(false);
@@ -20,6 +21,7 @@ export const Header = () => {
     const { data } = useQuery("me", () =>
         axios.get(`${config.SERVER_URL}/user/me`)
     );
+
     return (
         <div className="header">
             <div className="container">
@@ -31,30 +33,8 @@ export const Header = () => {
                             </div>
                         </Link>
 
-                        <nav className="header__menu">
-                            <ul>
-                                <Link to="/" className="header__link">
-                                    <li>
-                                        <span>Catalog</span>
-                                    </li>
-                                </Link>
-                                <Link to="/delivery" className="header__link">
-                                    <li>
-                                        <span>Shipping</span>
-                                    </li>
-                                </Link>
-                                <Link to="/payment" className="header__link">
-                                    <li>
-                                        <span>Payment</span>
-                                    </li>
-                                </Link>
-                                <Link to="/contacts" className="header__link">
-                                    <li>
-                                        <span>Contacts</span>
-                                    </li>
-                                </Link>
-                            </ul>
-                        </nav>
+                        <Navigation />
+                        <MobileNavigation />
                     </div>
                     <div className="header__item">
                         <div className="header__phone">
