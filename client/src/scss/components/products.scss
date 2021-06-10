@@ -103,9 +103,19 @@
 }
 
 @media (max-width: 770px) {
+    .products {
+        &__item {
+            width: 39%;
+        }
+    }
 }
 
 @media (max-width: 575px) {
+    .products {
+        &__item {
+            width: 50%;
+        }
+    }
 }
 
 @media (max-width: 320px) {
