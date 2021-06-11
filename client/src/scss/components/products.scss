@@ -113,10 +113,19 @@
 @media (max-width: 575px) {
     .products {
         &__item {
-            width: 50%;
+            width: 51%;
+
+            &:nth-child(n) {
+                margin-right: 0;
+            }
         }
     }
 }
 
 @media (max-width: 320px) {
+    .products {
+        &__item {
+            width: 89%;
+        }
+    }
 }
