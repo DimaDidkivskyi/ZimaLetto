@@ -95,8 +95,29 @@
         &__img {
             height: 250px;
         }
+
+        &__left-arrow {
+            top: 40%;
+        }
+
+        &__right-arrow {
+            top: 40%;
+        }
     }
 }
 
 @media (max-width: 320px) {
+    .slider {
+        &__img {
+            height: 200px;
+        }
+
+        &__left-arrow {
+            display: none;
+        }
+
+        &__right-arrow {
+            display: none;
+        }
+    }
 }
