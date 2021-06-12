@@ -107,6 +107,8 @@
     }
 
     &__bottom {
+        display: flex;
+        flex-direction: row;
         margin-top: 9px;
         font-size: 12px;
         line-height: 32px;
@@ -151,17 +153,19 @@
     }
 }
 
-@media (max-width: 770px) {
-}
-
-@media (max-width: 575px) {
-}
-
 @media (max-width: 320px) {
     .footer {
         .phones {
             display: flex;
             flex-direction: column;
+        }
+
+        &__bottom {
+            flex-direction: column;
+
+            span {
+                margin-left: 0;
+            }
         }
     }
 }

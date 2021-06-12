@@ -4,7 +4,7 @@ import AboutUs from "../assets/img/about-us.png";
 
 export const ContactsAboutUs = () => {
     return (
-        <section className="contacts-about">
+        <div className="contacts-about">
             <div className="container">
                 <h1>About us</h1>
                 <img src={AboutUs} alt="" />
@@ -42,6 +42,6 @@ export const ContactsAboutUs = () => {
                     </p>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };

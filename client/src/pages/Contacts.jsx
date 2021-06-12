@@ -4,10 +4,12 @@ import { Header, Footer, ContactsAboutUs } from "../components";
 
 export const Contacts = () => {
     return (
-        <div>
+        <section className="contacts">
             <Header />
-            <ContactsAboutUs />
+            <div className="contacts__inner">
+                <ContactsAboutUs />
+            </div>
             <Footer />
-        </div>
+        </section>
     );
 };
