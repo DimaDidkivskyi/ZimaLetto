@@ -1,7 +1,9 @@
 @import "./variables.scss";
 
 .terms {
-    padding: 50px 0;
+    &__content {
+        padding: 50px 0;
+    }
 
     &__title {
         h1 {
@@ -49,6 +51,22 @@
             &:first-child {
                 margin-bottom: 5px;
             }
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .terms {
+        &__content {
+            padding: 50px 20px;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .terms {
+        &__content {
+            padding: 20px;
         }
     }
 }

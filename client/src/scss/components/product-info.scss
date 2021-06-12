@@ -105,3 +105,44 @@
         }
     }
 }
+
+@media (max-width: 990px) {
+    .product-info {
+        &__top {
+            padding: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .product-info {
+        &__top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .img {
+                width: 95%;
+            }
+        }
+
+        &__sidebar {
+            margin-top: 30px;
+            width: 60%;
+            line-height: 30px;
+
+            .title {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .product-info {
+        &__sidebar {
+            width: 90%;
+        }
+    }
+}

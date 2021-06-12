@@ -1,7 +1,9 @@
 @import "./variables.scss";
 
 .confidentiality {
-    padding: 45px 0;
+    &__inner {
+        padding: 45px 0;
+    }
 
     &__title {
         h1 {
@@ -53,6 +55,28 @@
 
         &:hover {
             color: $green;
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .confidentiality {
+        &__inner {
+            padding: 45px 20px;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .confidentiality {
+        &__inner {
+            padding: 20px 20px;
+
+            .confidentiality__title {
+                h1 {
+                    font-size: 24px;
+                }
+            }
         }
     }
 }
