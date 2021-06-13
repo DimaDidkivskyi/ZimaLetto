@@ -14,6 +14,7 @@ import {
     EditProduct,
     EditOrders,
     EditUsers,
+    Modal,
     Home,
     OrderRegistration,
     Payment,
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/edit-product" component={EditProduct} exact />
                 <Route path="/edit-orders" component={EditOrders} exact />
                 <Route path="/edit-users" component={EditUsers} exact />
+                <Route path="/modal" component={Modal} exact />
                 <Route path="/" component={Home} exact />
                 <Route
                     path="/order-registration"

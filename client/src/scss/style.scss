@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -58,6 +59,7 @@ body {
 @import "./components/product-about.scss";
 @import "./components/login.scss";
 @import "./components/order.scss";
+@import "./components/modal.scss";
 
 /* Admin panel */
 @import "./components/admin.scss";
