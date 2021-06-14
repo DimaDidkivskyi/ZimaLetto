@@ -4,11 +4,27 @@ import Log from "../assets/img/log.svg";
 import Reg from "../assets/img/register.svg";
 
 export const Modal = () => {
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container-modal");
+
+    if (sign_up_btn) {
+        sign_up_btn.addEventListener("click", () => {
+            container.classList.add("sign-up-mode");
+        });
+    }
+
+    if (sign_in_btn) {
+        sign_in_btn.addEventListener("click", () => {
+            container.classList.remove("sign-up-mode");
+        });
+    }
+
     return (
         <div className="container-modal">
             <div className="forms-container">
                 <div className="signin-signup">
-                    <form action="" className="sign-in-form">
+                    <form action="#" className="sign-in-form">
                         <h2 className="title">Sign in</h2>
                         <div className="input-field">
                             <i className="fas fa-user"></i>
@@ -23,7 +39,6 @@ export const Modal = () => {
                             value="Login"
                             className="btn solid"
                         />
-
                         <p className="social-text">
                             Or Sign in with social platforms
                         </p>
@@ -42,8 +57,7 @@ export const Modal = () => {
                             </a>
                         </div>
                     </form>
-
-                    <form action="" className="sign-up-form">
+                    <form action="#" className="sign-up-form">
                         <h2 className="title">Sign up</h2>
                         <div className="input-field">
                             <i className="fas fa-user"></i>
@@ -51,18 +65,13 @@ export const Modal = () => {
                         </div>
                         <div className="input-field">
                             <i className="fas fa-envelope"></i>
-                            <input type="text" placeholder="Email" />
+                            <input type="email" placeholder="Email" />
                         </div>
                         <div className="input-field">
                             <i className="fas fa-lock"></i>
                             <input type="password" placeholder="Password" />
                         </div>
-                        <input
-                            type="submit"
-                            value="Sign up"
-                            className="btn solid"
-                        />
-
+                        <input type="submit" className="btn" value="Sign up" />
                         <p className="social-text">
                             Or Sign up with social platforms
                         </p>
@@ -84,33 +93,32 @@ export const Modal = () => {
                 </div>
             </div>
 
-            <div className="panel-container">
+            <div className="panels-container">
                 <div className="panel left-panel">
-                    <div className="panel-content">
-                        <h3>New here?</h3>
+                    <div className="content-panel">
+                        <h3>New here ?</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Excepturi omnis quam minus?
+                            Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Debitis, ex ratione. Aliquid!
                         </p>
                         <button className="btn transparent" id="sign-up-btn">
                             Sign up
                         </button>
-                        <img src={Log} alt="login" className="image" />
                     </div>
+                    <img src={Log} className="image" alt="" />
                 </div>
-
                 <div className="panel right-panel">
-                    <div className="panel-content">
-                        <h3>One for us?</h3>
+                    <div className="content-panel">
+                        <h3>One of us ?</h3>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Excepturi omnis quam minus?
+                            elit. Nostrum laboriosam ad deleniti.
                         </p>
                         <button className="btn transparent" id="sign-in-btn">
                             Sign in
                         </button>
-                        <img src={Reg} alt="login" className="image" />
                     </div>
+                    <img src={Reg} className="image" alt="" />
                 </div>
             </div>
         </div>
