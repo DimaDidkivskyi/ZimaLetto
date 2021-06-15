@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Log from "../assets/img/log.svg";
 import Reg from "../assets/img/register.svg";
 
 export const Modal = () => {
-    const sign_in_btn = document.querySelector("#sign-in-btn");
-    const sign_up_btn = document.querySelector("#sign-up-btn");
+    useEffect(() => {
+        const sign_in_btn = document.querySelector("#sign-in-btn");
+        if (sign_in_btn) {
+            sign_in_btn.addEventListener("click", () => {
+                container.classList.remove("sign-up-mode");
+            });
+        }
+    }, []);
+    useEffect(() => {
+        const sign_up_btn = document.querySelector("#sign-up-btn");
+        if (sign_up_btn) {
+            sign_up_btn.addEventListener("click", () => {
+                container.classList.add("sign-up-mode");
+            });
+        }
+    }, []);
     const container = document.querySelector(".container-modal");
-
-    if (sign_up_btn) {
-        sign_up_btn.addEventListener("click", () => {
-            container.classList.add("sign-up-mode");
-        });
-    }
-
-    if (sign_in_btn) {
-        sign_in_btn.addEventListener("click", () => {
-            container.classList.remove("sign-up-mode");
-        });
-    }
 
     return (
         <div className="container-modal">
@@ -104,6 +107,15 @@ export const Modal = () => {
                         <button className="btn transparent" id="sign-up-btn">
                             Sign up
                         </button>
+                        <br />
+                        <Link to="/" className="react-router__link">
+                            <button
+                                className="btn transparent"
+                                style={{ marginTop: "10px" }}
+                            >
+                                To catalog
+                            </button>
+                        </Link>
                     </div>
                     <img src={Log} className="image" alt="" />
                 </div>
