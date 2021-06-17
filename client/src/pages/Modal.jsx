@@ -1,27 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import Log from "../assets/img/log.svg";
 import Reg from "../assets/img/register.svg";
 
 export const Modal = () => {
-    useEffect(() => {
-        const sign_in_btn = document.querySelector("#sign-in-btn");
-        if (sign_in_btn) {
-            sign_in_btn.addEventListener("click", () => {
-                container.classList.remove("sign-up-mode");
-            });
-        }
-    }, []);
-    useEffect(() => {
-        const sign_up_btn = document.querySelector("#sign-up-btn");
-        if (sign_up_btn) {
-            sign_up_btn.addEventListener("click", () => {
-                container.classList.add("sign-up-mode");
-            });
-        }
-    }, []);
-    const container = document.querySelector(".container-modal");
+    const [signUp, toggleSignUp] = useState(false);
+    const signIn = useRef(null);
+    const onContainerClick = () => {
+        document.querySelector(".container-modal");
+    };
+
+    // const openSignUp = useEffect(() => {
+    //     container.classList.add("sign-up-mode");
+    // });
+
+    // const openSignIn = useEffect(() => {
+    //     container.classList.remove("sign-up-mode");
+    // });
+
+    // const sign_in_btn = document.querySelector("#sign-in-btn");
+    // sign_in_btn.addEventListener("click", () => {
+    //     container.classList.remove("sign-up-mode");
+    // });
+
+    // const sign_up_btn = document.querySelector("#sign-up-btn");
+    // sign_up_btn.addEventListener("click", () => {
+    //     container.classList.add("sign-up-mode");
+    // });
 
     return (
         <div className="container-modal">
@@ -104,7 +110,15 @@ export const Modal = () => {
                             Lorem ipsum, dolor sit amet consectetur adipisicing
                             elit. Debitis, ex ratione. Aliquid!
                         </p>
-                        <button className="btn transparent" id="sign-up-btn">
+                        <button
+                            className="btn transparent"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                if (!signUp) {
+                                    toggleSignUp(true);
+                                }
+                            }}
+                        >
                             Sign up
                         </button>
                         <br />
@@ -126,7 +140,15 @@ export const Modal = () => {
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Nostrum laboriosam ad deleniti.
                         </p>
-                        <button className="btn transparent" id="sign-in-btn">
+                        <button
+                            className="btn transparent"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                if (!signUp) {
+                                    toggleSignUp(true);
+                                }
+                            }}
+                        >
                             Sign in
                         </button>
                     </div>
