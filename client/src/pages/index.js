@@ -9,7 +9,6 @@ export { ProductsList } from "./ProductsList";
 export { EditProduct } from "./EditProduct";
 export { EditOrders } from "./EditOrders";
 export { EditUsers } from "./EditUsers";
-export { Modal } from "./Modal";
 export { OrderRegistration } from "./OrderRegistration";
 export { Profile } from "./Profile";
 export { Shipping } from "./Shipping";
