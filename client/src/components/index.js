@@ -2,6 +2,7 @@ export { Button } from "./Button";
 export { CartItem } from "./CartItem";
 export { Categories } from "./Categories/Categories";
 export { ContactsAboutUs } from "./ContactsAboutUs";
+export { AccountBox } from "./AccountBox/index";
 export { Footer } from "./Footer";
 export { Header } from "./Header/Header";
 export { HeaderAdmin } from "./HeaderAdmin";
