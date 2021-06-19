@@ -4,8 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 
-import { Navigation, MobileNavigation } from "../../components";
-import { Form } from "../Registration/Form";
+import { Navigation, MobileNavigation, AccountBox } from "../../components";
 import { config } from "../../utils/config";
 
 import headerLogo from "../../assets/img/logo.svg";
@@ -113,7 +112,7 @@ export const Header = () => {
                                 </mask>
                             </svg>
                         </button>
-                        <Form
+                        <AccountBox
                             showModal={showModal}
                             setShowModal={setShowModal}
                         />

@@ -24,7 +24,7 @@ export const SignUpForm = () => {
             </FormContainer>
             <Marginer direction="vertical" margin={10} />
             <SubmitButton type="submit">Sign up</SubmitButton>
-            <Marginer direction="vertical" margin="1.6em" />
+            <Marginer direction="vertical" margin="1em" />
             <MutedLink href="#">
                 Already have an account?
                 <BoldLink href="#" onClick={switchToSignin}>
