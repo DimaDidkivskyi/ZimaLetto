@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
+import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
 
 import { LoginForm } from "./LoginForm";
@@ -7,7 +8,7 @@ import { SignUpForm } from "./SignUpForm";
 import { AccountContext } from "./accountContext";
 
 const BoxContainer = styled.div`
-    width: 280px;
+    width: 320px;
     min-height: 550px;
     display: flex;
     flex-direction: column;
@@ -16,6 +17,7 @@ const BoxContainer = styled.div`
     box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
     position: relative;
     overflow: hidden;
+    margin: 60px auto;
 `;
 
 const TopContainer = styled.div`
@@ -35,13 +37,14 @@ const BackDrop = styled(motion.div)`
     display: flex;
     flex-direction: column;
     border-radius: 50%;
-    transform: rotate(60deg)
+    transform: rotate(60deg);
     top: -290px;
     left: -70px;
     background: rgb(241, 196, 15);
     background: linear-gradient(
         58deg,
-        rgba(241, 196, 15, 1) 20% rgba(243, 172, 18, 1) 100%
+        rgba(241, 196, 15, 1) 20%,
+        rgba(243, 172, 18, 1) 100%
     );
 `;
 
@@ -62,6 +65,7 @@ const HeaderText = styled.h2`
 
 const SmallText = styled.h5`
     color: #fff;
+    font-weight: 500;
     font-size: 11px;
     z-index: 10;
     margin: 0;
@@ -96,11 +100,12 @@ const expandingTransition = {
     stiffness: 30,
 };
 
-export const AccountBox = (props) => {
+export const AccountBox = ({ showModal, setShowModal }) => {
     const [isExpanded, setExpanded] = useState(false);
     const [active, setActive] = useState("signin");
+    const modalRef = useRef();
 
-    const playExpandedAnimation = () => {
+    const playExpandingAnimation = () => {
         setExpanded(true);
         setTimeout(() => {
             setExpanded(false);
@@ -108,51 +113,100 @@ export const AccountBox = (props) => {
     };
 
     const switchToSignup = () => {
-        playExpandedAnimation();
+        playExpandingAnimation();
         setTimeout(() => {
             setActive("signup");
         }, 400);
     };
 
     const switchToSignin = () => {
-        playExpandedAnimation();
+        playExpandingAnimation();
         setTimeout(() => {
             setActive("signin");
         }, 400);
     };
 
+    const closeModalByButton = () => {
+        setShowModal((prev) => !prev);
+    };
+
+    const closeModalByBackground = (e) => {
+        if (modalRef.current === e.target) {
+            setShowModal(false);
+        }
+    };
+
+    const animation = useSpring({
+        config: {
+            duration: 250,
+        },
+        opacity: showModal ? 1 : 0,
+    });
+
     const contextValue = { switchToSignup, switchToSignin };
 
     return (
-        <AccountContext.Provider value={contextValue}>
-            <BoxContainer>
-                <TopContainer>
-                    <BackDrop
-                        initial={false}
-                        animate={isExpanded ? "expanded" : "collapsed"}
-                        variants={backdropVariants}
-                        transition={expandingTransition}
-                    />
-                    {active === "signin" && (
-                        <HeaderContainer>
-                            <HeaderText>Welcome</HeaderText>
-                            <HeaderText>Back</HeaderText>
-                            <SmallText>Please sign-in to continue</SmallText>
-                        </HeaderContainer>
-                    )}
-                    {active === "signup" && (
-                        <HeaderContainer>
-                            <HeaderText>Create</HeaderText>
-                            <HeaderText>Account</HeaderText>
-                            <SmallText>Please sign-up to continue</SmallText>
-                        </HeaderContainer>
-                    )}
-                </TopContainer>
-                <InnerContainer>
-                    {active === "signin" && <LoginForm />}
-                    {active === "signup" && <SignUpForm />}
-                </InnerContainer>
-            </BoxContainer>
-        </AccountContext.Provider>
+        <>
+            {showModal ? (
+                <animated.div style={{ ...animation, zIndex: 10 }}>
+                    <section
+                        className="modal"
+                        onClick={closeModalByBackground}
+                        ref={modalRef}
+                    >
+                        <AccountContext.Provider value={contextValue}>
+                            <BoxContainer>
+                                <TopContainer>
+                                    <BackDrop
+                                        initial={false}
+                                        animate={
+                                            isExpanded
+                                                ? "expanded"
+                                                : "collapsed"
+                                        }
+                                        variants={backdropVariants}
+                                        transition={expandingTransition}
+                                    />
+                                    {active === "signin" && (
+                                        <HeaderContainer>
+                                            <HeaderText>Welcome</HeaderText>
+                                            <HeaderText>Back</HeaderText>
+                                            <SmallText>
+                                                Please sign-in to continue
+                                            </SmallText>
+                                            <span
+                                                onClick={closeModalByButton}
+                                                className="close-btn"
+                                            >
+                                                ×
+                                            </span>
+                                        </HeaderContainer>
+                                    )}
+                                    {active === "signup" && (
+                                        <HeaderContainer>
+                                            <HeaderText>Create</HeaderText>
+                                            <HeaderText>Account</HeaderText>
+                                            <SmallText>
+                                                Please sign-up to continue
+                                            </SmallText>
+                                            <span
+                                                onClick={closeModalByButton}
+                                                className="close-btn"
+                                            >
+                                                ×
+                                            </span>
+                                        </HeaderContainer>
+                                    )}
+                                </TopContainer>
+                                <InnerContainer>
+                                    {active === "signin" && <LoginForm />}
+                                    {active === "signup" && <SignUpForm />}
+                                </InnerContainer>
+                            </BoxContainer>
+                        </AccountContext.Provider>
+                    </section>
+                </animated.div>
+            ) : null}
+        </>
     );
 };
