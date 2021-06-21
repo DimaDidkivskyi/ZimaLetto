@@ -12,8 +12,6 @@ export const Categories = () => {
         return fetchCategories();
     });
 
-    console.log(data);
-
     let history = useHistory();
 
     const handleClick = (category) => {

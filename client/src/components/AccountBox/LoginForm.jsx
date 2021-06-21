@@ -26,7 +26,6 @@ export const LoginForm = () => {
     } = useForm({
         resolver: joiResolver(loginSchema),
     });
-    console.log(errors);
     const mutation = useMutation(
         (credentials) =>
             axios.post(`${config.SERVER_URL}/user/login`, credentials),

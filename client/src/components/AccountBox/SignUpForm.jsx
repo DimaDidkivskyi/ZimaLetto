@@ -26,7 +26,6 @@ export const SignUpForm = () => {
     } = useForm({
         resolver: joiResolver(registrationSchema),
     });
-    console.log(errors);
     const mutation = useMutation(
         (credentials) =>
             axios.post(`${config.SERVER_URL}/user/registration`, credentials),
