@@ -11,7 +11,7 @@ export const emailSchema = Joi.object({
     }),
 
     password: Joi.string().required(),
-    password2: Joi.string().required(),
+    password2: Joi.ref("password"),
 
     user_role: Joi.string(),
 });
