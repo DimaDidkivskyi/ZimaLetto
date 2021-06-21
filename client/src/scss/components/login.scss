@@ -16,7 +16,12 @@
         right: 6%;
         font-size: 2.5rem;
         z-index: 1;
-        color: #fff;
+        color: $white;
         cursor: pointer;
+        transition: 0.2s linear;
+
+        &:hover {
+            color: $black;
+        }
     }
 }
