@@ -40,7 +40,7 @@ userRouter.post("/login", async (req, res) => {
         const sha = Crypto.createHash("sha512").update(String(body.password));
         const result = sha.digest("hex");
         if (result !== user.password) {
-            return res.json({ ok: true, message: "Incorrect password" });
+            return res.json({ ok: false, message: "Incorrect password" });
         }
 
         if (Object.values(UserRole).includes(user.user_role)) {
@@ -63,38 +63,34 @@ userRouter.get("/logout", async (_req, res) => {
 
 // REGISTRATION
 userRouter.post("/registration", async (req, res) => {
-    // POST запит на реєстрацію користувача
     try {
         const body: IReqDataUserRegister = req.body;
 
-        const { error } = emailSchema.validate(body); // Перевірка на правильність написання електроної пошти
+        const { error } = emailSchema.validate(body);
 
         if (error) {
-            // Умова що виконується якщо виникає помилка
-            return res.json({ ok: false, error }); // Повернення повідомлення з помилкою
+            return res.json({ ok: false, error });
         }
 
-        const userRepository = req.db.getRepository(User); // Отриманння доступу до репозиторії користувачів
+        const userRepository = req.db.getRepository(User);
 
-        const sha = Crypto.createHash("sha512").update(String(body.password)); // Кодування паролю
+        const sha = Crypto.createHash("sha512").update(String(body.password));
         const result = sha.digest("hex");
 
-        const user = userRepository.create({ ...body, password: result }); // Створення користувача
-        await userRepository.save(user); // Зберігання користувача
-        createRefreshToken({ id: user.id }, res); // Створення cookie користувача
+        const user = userRepository.create({ ...body, password: result });
+
+        await userRepository.save(user);
+        createRefreshToken({ id: user.id }, res);
         return res.json({
-            // Повернення повідомлення про успішну реєстрацію
             ok: true,
             message: "User created",
             token: createAccessToken({ id: user.id }),
         });
     } catch (error) {
-        // Частина функції що виконується якщо виникає помилка
         if (error.code === "23505") {
-            // Якщо код помилки 23505
-            return res.json({ ok: false, error }); // Повертається повідомлення про помилку
+            console.log("Hello");
+            return res.json({ ok: false, message: "Email already used" });
         }
-
         return res.json({ ok: false, error });
     }
 });
