@@ -40,12 +40,8 @@ const BackDrop = styled(motion.div)`
     transform: rotate(60deg);
     top: -290px;
     left: -70px;
-    background: rgb(241, 196, 15);
-    background: linear-gradient(
-        58deg,
-        rgba(241, 196, 15, 1) 20%,
-        rgba(243, 172, 18, 1) 100%
-    );
+    background: #fe5f1e;
+    background: linear-gradient(to right, #f5af19, #f12711);
 `;
 
 const HeaderContainer = styled.div`
@@ -136,6 +132,10 @@ export const AccountBox = ({ showModal, setShowModal }) => {
         }
     };
 
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     const animation = useSpring({
         config: {
             duration: 250,
@@ -143,7 +143,7 @@ export const AccountBox = ({ showModal, setShowModal }) => {
         opacity: showModal ? 1 : 0,
     });
 
-    const contextValue = { switchToSignup, switchToSignin };
+    const contextValue = { switchToSignup, switchToSignin, closeModal };
 
     return (
         <>
